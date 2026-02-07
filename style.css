@@ -1,0 +1,295 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: #333;
+}
+
+.container {
+    max-width: 1000px;
+    width: 100%;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    padding: 30px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+header h1 {
+    color: #e74c3c;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+header .subtitle {
+    color: #7f8c8d;
+    font-size: 1.2rem;
+}
+
+.countdown-container {
+    background: linear-gradient(to right, #3498db, #2ecc71);
+    border-radius: 15px;
+    padding: 30px;
+    color: white;
+    text-align: center;
+    margin-bottom: 40px;
+    box-shadow: 0 10px 20px rgba(52, 152, 219, 0.3);
+}
+
+.countdown-title h2 {
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+}
+
+.countdown {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.time-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 10px;
+    min-width: 100px;
+}
+
+.time-value {
+    font-size: 3.5rem;
+    font-weight: 700;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 10px;
+    padding: 15px 20px;
+    margin-bottom: 10px;
+    min-width: 110px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.time-label {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.time-separator {
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 0 5px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.target-date {
+    font-size: 1.4rem;
+    margin-top: 15px;
+}
+
+.target-date i {
+    margin-right: 10px;
+}
+
+.info-section {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.info-card {
+    flex: 1;
+    min-width: 300px;
+    background-color: #f8f9fa;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.info-card h3 {
+    color: #3498db;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.info-card p {
+    line-height: 1.6;
+    color: #555;
+}
+
+.couple-section {
+    flex: 1;
+    min-width: 300px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #f8f9fa;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.person {
+    text-align: center;
+    padding: 20px;
+}
+
+.avatar {
+    width: 80px;
+    height: 80px;
+    background-color: #e74c3c;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    margin: 0 auto 15px;
+}
+
+.person h3 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.heart-connector {
+    font-size: 3rem;
+    color: #e74c3c;
+}
+
+.progress-container {
+    background-color: #f8f9fa;
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.progress-container h3 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+.progress-bar {
+    height: 30px;
+    background-color: #ecf0f1;
+    border-radius: 15px;
+    overflow: hidden;
+    margin-bottom: 15px;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(to right, #3498db, #2ecc71);
+    border-radius: 15px;
+    width: 0%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    transition: width 0.5s ease;
+}
+
+.progress-text {
+    text-align: center;
+    font-size: 1.1rem;
+    color: #555;
+}
+
+footer {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 2px solid #f0f0f0;
+    color: #7f8c8d;
+}
+
+footer p {
+    margin-bottom: 10px;
+}
+
+footer .github-link {
+    font-size: 1rem;
+}
+
+footer a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .time-value {
+        font-size: 2.5rem;
+        min-width: 80px;
+        padding: 10px 15px;
+    }
+    
+    .time-label {
+        font-size: 1rem;
+    }
+    
+    .time-separator {
+        font-size: 2rem;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+    }
+    
+    .countdown-title h2 {
+        font-size: 1.5rem;
+    }
+    
+    .couple-section {
+        flex-direction: column;
+    }
+    
+    .heart-connector {
+        margin: 20px 0;
+        transform: rotate(90deg);
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 15px;
+    }
+    
+    .time-block {
+        margin: 5px;
+        min-width: 70px;
+    }
+    
+    .time-value {
+        font-size: 2rem;
+        min-width: 70px;
+        padding: 8px 12px;
+    }
+    
+    .countdown {
+        margin-bottom: 10px;
+    }
+}

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Обратный отсчет до встречи во Вьетнаме</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-heart"></i> До встречи во Вьетнаме!</h1>
+            <p class="subtitle">Боря и Катя встретятся 28 февраля</p>
+        </header>
+
+        <main>
+            <div class="countdown-container">
+                <div class="countdown-title">
+                    <h2>Осталось времени:</h2>
+                </div>
+                
+                <div class="countdown">
+                    <div class="time-block">
+                        <div class="time-value" id="days">00</div>
+                        <div class="time-label">Дней</div>
+                    </div>
+                    <div class="time-separator">:</div>
+                    <div class="time-block">
+                        <div class="time-value" id="hours">00</div>
+                        <div class="time-label">Часов</div>
+                    </div>
+                    <div class="time-separator">:</div>
+                    <div class="time-block">
+                        <div class="time-value" id="minutes">00</div>
+                        <div class="time-label">Минут</div>
+                    </div>
+                    <div class="time-separator">:</div>
+                    <div class="time-block">
+                        <div class="time-value" id="seconds">00</div>
+                        <div class="time-label">Секунд</div>
+                    </div>
+                </div>
+                
+                <div class="target-date">
+                    <p><i class="fas fa-calendar-alt"></i> 28 февраля</p>
+                </div>
+            </div>
+            
+            <div class="info-section">
+                <div class="info-card">
+                    <h3><i class="fas fa-plane"></i> О поездке</h3>
+                    <p>Боря и Катя встретятся во Вьетнаме, чтобы провести вместе незабываемое время в этой прекрасной стране.</p>
+                </div>
+                
+                <div class="couple-section">
+                    <div class="person">
+                        <div class="avatar"><i class="fas fa-user"></i></div>
+                        <h3>Боря</h3>
+                        <p>С нетерпением ждет встречи!</p>
+                    </div>
+                    <div class="heart-connector">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <div class="person">
+                        <div class="avatar"><i class="fas fa-user"></i></div>
+                        <h3>Катя</h3>
+                        <p>Тоже очень ждет встречи!</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="progress-container">
+                <h3><i class="fas fa-chart-line"></i> Прогресс до встречи</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill">0%</div>
+                </div>
+                <p class="progress-text">До встречи осталось <span id="progressPercent">0</span>% времени</p>
+            </div>
+        </main>
+        
+        <footer>
+            <p>Создано с <i class="fas fa-heart"></i> для Бори и Кати</p>
+            <p class="github-link">
+                <i class="fab fa-github"></i> Проект на GitHub: 
+                <a href="https://github.com/yourusername/countdown-to-vietnam" target="_blank">countdown-to-vietnam</a>
+            </p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
