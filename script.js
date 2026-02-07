@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const progressPercent = document.getElementById('progressPercent');
     
     // Дата начала отсчета (предположим, отсчет начался 1 января текущего года)
-    const startDate = new Date(lastYear, 11, 21); // 0 = январь
+    const startDate = new Date(lastYear, 11, 22); // 0 = январь
     
     // Функция для обновления отсчета
     function updateCountdown() {
