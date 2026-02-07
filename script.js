@@ -1,6 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Устанавливаем дату встречи - 28 февраля текущего года
     const lastYear = new Date().getFullYear()-1;
+    const currentYear = new Date().getFullYear();
     const targetDate = new Date(currentYear, 1, 28); // 1 = февраль (месяцы 0-11)
     
     // Если 28 февраля уже прошло в этом году, устанавливаем на следующий год
