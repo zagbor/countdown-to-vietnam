@@ -4,19 +4,6 @@
     box-sizing: border-box;
 }
 
-/* Шутка вверху страницы */
-.joke-text {
-    position: fixed;
-    top: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 0.7rem;
-    color: rgba(255, 20, 147, 0.6);
-    z-index: 1000;
-    white-space: nowrap;
-    text-align: center;
-}
-
 body {
     font-family: 'Roboto', sans-serif;
     background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
@@ -113,6 +100,13 @@ header .subtitle {
     color: #ff69b4;
     font-size: 1.4rem;
     font-weight: 500;
+}
+
+header .joke-text {
+    font-size: 0.75rem;
+    color: rgba(255, 20, 147, 0.7);
+    margin-top: 15px;
+    font-style: italic;
 }
 
 .countdown-container {
