@@ -6,56 +6,135 @@
 
 body {
     font-family: 'Roboto', sans-serif;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
     color: #333;
+    position: relative;
+    overflow-x: hidden;
+}
+
+/* Плавающие сердечки на фоне */
+.hearts-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.floating-heart {
+    position: absolute;
+    font-size: 2rem;
+    opacity: 0.6;
+    animation: floatUp 15s linear infinite;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.6;
+    }
+    90% {
+        opacity: 0.6;
+    }
+    100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+    }
 }
 
 .container {
-    max-width: 1000px;
+    max-width: 1200px;
     width: 100%;
-    background-color: white;
-    border-radius: 20px;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.95);
+    border-radius: 25px;
+    box-shadow: 0 20px 60px rgba(255, 105, 180, 0.3);
     overflow: hidden;
-    padding: 30px;
+    padding: 40px;
+    position: relative;
+    z-index: 1;
 }
 
 header {
     text-align: center;
     margin-bottom: 40px;
     padding-bottom: 20px;
-    border-bottom: 2px solid #f0f0f0;
+    border-bottom: 3px solid #ff69b4;
+}
+
+.valentine-decoration {
+    font-size: 1.5rem;
+    color: #ff1493;
+    margin: 10px 0;
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+.valentine-decoration i {
+    margin: 0 10px;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
 }
 
 header h1 {
-    color: #e74c3c;
-    font-size: 2.5rem;
-    margin-bottom: 10px;
+    color: #ff1493;
+    font-size: 2.8rem;
+    margin-bottom: 15px;
+    font-family: 'Dancing Script', cursive;
+    text-shadow: 2px 2px 4px rgba(255, 20, 147, 0.3);
 }
 
 header .subtitle {
-    color: #7f8c8d;
-    font-size: 1.2rem;
+    color: #ff69b4;
+    font-size: 1.4rem;
+    font-weight: 500;
 }
 
 .countdown-container {
-    background: linear-gradient(to right, #3498db, #2ecc71);
-    border-radius: 15px;
-    padding: 30px;
+    background: linear-gradient(135deg, #ff6b95 0%, #ff8e53 50%, #ff6b95 100%);
+    border-radius: 20px;
+    padding: 35px;
     color: white;
     text-align: center;
     margin-bottom: 40px;
-    box-shadow: 0 10px 20px rgba(52, 152, 219, 0.3);
+    box-shadow: 0 15px 30px rgba(255, 107, 149, 0.4);
+    position: relative;
+    overflow: hidden;
+}
+
+.countdown-container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+    animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
 }
 
 .countdown-title h2 {
-    font-size: 1.8rem;
+    font-size: 2rem;
     margin-bottom: 25px;
+    position: relative;
+    z-index: 1;
 }
 
 .countdown {
@@ -77,12 +156,15 @@ header .subtitle {
 .time-value {
     font-size: 3.5rem;
     font-weight: 700;
-    background-color: rgba(255, 255, 255, 0.2);
-    border-radius: 10px;
+    background: linear-gradient(135deg, rgba(255,255,255,0.3), rgba(255,255,255,0.1));
+    border-radius: 15px;
     padding: 15px 20px;
     margin-bottom: 10px;
     min-width: 110px;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    position: relative;
+    z-index: 1;
 }
 
 .time-label {
@@ -117,21 +199,23 @@ header .subtitle {
 .info-card {
     flex: 1;
     min-width: 300px;
-    background-color: #f8f9fa;
-    border-radius: 15px;
-    padding: 25px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    background: linear-gradient(135deg, #fff0f5 0%, #ffe4e1 100%);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 25px rgba(255, 105, 180, 0.2);
+    border: 2px solid #ffb6c1;
 }
 
-.info-card h3 {
-    color: #3498db;
+.valentine-card h3 {
+    color: #ff1493;
     margin-bottom: 15px;
     font-size: 1.5rem;
 }
 
-.info-card p {
-    line-height: 1.6;
-    color: #555;
+.valentine-card p {
+    line-height: 1.8;
+    color: #d63384;
+    font-size: 1.1rem;
 }
 
 .couple-section {
@@ -140,21 +224,22 @@ header .subtitle {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background-color: #f8f9fa;
-    border-radius: 15px;
-    padding: 25px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    background: linear-gradient(135deg, #fff0f5 0%, #ffe4e1 100%);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 25px rgba(255, 105, 180, 0.2);
+    border: 2px solid #ffb6c1;
 }
 
-.person {
+.valentine-couple .person {
     text-align: center;
     padding: 20px;
 }
 
-.avatar {
-    width: 80px;
-    height: 80px;
-    background-color: #e74c3c;
+.male-avatar {
+    width: 90px;
+    height: 90px;
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
     color: white;
     border-radius: 50%;
     display: flex;
@@ -162,97 +247,255 @@ header .subtitle {
     align-items: center;
     font-size: 2.5rem;
     margin: 0 auto 15px;
+    box-shadow: 0 5px 15px rgba(79, 172, 254, 0.4);
 }
 
-.person h3 {
-    color: #2c3e50;
+.female-avatar {
+    width: 90px;
+    height: 90px;
+    background: linear-gradient(135deg, #ff6b95 0%, #ff8e53 100%);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 2.5rem;
+    margin: 0 auto 15px;
+    box-shadow: 0 5px 15px rgba(255, 107, 149, 0.4);
+}
+
+.valentine-couple .person h3 {
+    color: #ff1493;
     margin-bottom: 10px;
+    font-size: 1.4rem;
 }
 
-.heart-connector {
-    font-size: 3rem;
-    color: #e74c3c;
+.valentine-couple .person p {
+    color: #d63384;
+    font-size: 1.1rem;
+}
+
+.valentine-couple .heart-connector {
+    font-size: 2.5rem;
+    color: #ff1493;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.valentine-couple .heart-connector i {
+    animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+.valentine-couple .heart-connector i:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.valentine-couple .heart-connector i:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    25% { transform: scale(1.2); }
+    50% { transform: scale(1); }
+    75% { transform: scale(1.15); }
 }
 
 .progress-container {
-    background-color: #f8f9fa;
-    border-radius: 15px;
-    padding: 25px;
+    background: linear-gradient(135deg, #fff0f5 0%, #ffe4e1 100%);
+    border-radius: 20px;
+    padding: 30px;
     margin-bottom: 30px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 25px rgba(255, 105, 180, 0.2);
+    border: 2px solid #ffb6c1;
 }
 
-.progress-container h3 {
-    color: #2c3e50;
+.valentine-progress h3 {
+    color: #ff1493;
     margin-bottom: 20px;
     font-size: 1.5rem;
 }
 
 .progress-bar {
-    height: 30px;
-    background-color: #ecf0f1;
-    border-radius: 15px;
+    height: 35px;
+    background: linear-gradient(90deg, #ffe4e1, #fff0f5);
+    border-radius: 20px;
     overflow: hidden;
     margin-bottom: 15px;
+    border: 2px solid #ffb6c1;
 }
 
 .progress-fill {
     height: 100%;
-    background: linear-gradient(to right, #3498db, #2ecc71);
-    border-radius: 15px;
-    width: 0%;
+    background: linear-gradient(90deg, #ff6b95, #ff8e53, #ff6b95);
+    background-size: 200% 100%;
+    animation: progressGradient 3s linear infinite;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
     font-weight: bold;
-    transition: width 0.5s ease;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+@keyframes progressGradient {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
 .progress-text {
-    text-align: center;
+    color: #d63384;
     font-size: 1.1rem;
-    color: #555;
 }
 
-footer {
+.progress-text span {
+    font-weight: bold;
+    color: #ff1493;
+}
+
+/* Сообщение о любви */
+.love-message {
+    background: linear-gradient(135deg, #ff6b95 0%, #ff8e53 100%);
+    border-radius: 25px;
+    padding: 40px;
+    margin-bottom: 40px;
     text-align: center;
-    padding-top: 20px;
-    border-top: 2px solid #f0f0f0;
-    color: #7f8c8d;
+    box-shadow: 0 15px 40px rgba(255, 107, 149, 0.4);
+    position: relative;
+    overflow: hidden;
 }
 
-footer p {
+.love-message::before {
+    content: '💖';
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    font-size: 2rem;
+    animation: floatHeart 3s ease-in-out infinite;
+}
+
+.love-message::after {
+    content: '💖';
+    position: absolute;
+    bottom: 10px;
+    right: 20px;
+    font-size: 2rem;
+    animation: floatHeart 3s ease-in-out infinite 1.5s;
+}
+
+@keyframes floatHeart {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.love-message-content {
+    position: relative;
+    z-index: 1;
+}
+
+.love-title {
+    color: white;
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+}
+
+.love-text {
+    color: white;
+    font-size: 1.4rem;
+    line-height: 1.8;
+    font-style: italic;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+/* Секция с именами */
+.names-section {
+    background: linear-gradient(135deg, #fff0f5 0%, #ffe4e1 100%);
+    border-radius: 25px;
+    padding: 40px;
+    margin-bottom: 30px;
+    box-shadow: 0 15px 40px rgba(255, 105, 180, 0.2);
+    border: 2px solid #ffb6c1;
+}
+
+.names-title {
+    color: #ff1493;
+    font-family: 'Dancing Script', cursive;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.names-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 15px;
+}
+
+.name-card {
+    background: linear-gradient(135deg, #ffffff 0%, #fff5f7 100%);
+    border-radius: 15px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(255, 105, 180, 0.15);
+    border: 2px solid #ffb6c1;
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.name-card:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 10px 25px rgba(255, 105, 180, 0.3);
+    border-color: #ff69b4;
+}
+
+.name-card .flag {
+    font-size: 2rem;
+    display: block;
     margin-bottom: 10px;
 }
 
-footer .github-link {
-    font-size: 1rem;
+.name-card .name {
+    color: #ff1493;
+    font-size: 1.1rem;
+    font-weight: 500;
 }
 
-footer a {
-    color: #3498db;
+/* Футер */
+.valentine-footer {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 3px solid #ff69b4;
+}
+
+.valentine-footer p {
+    color: #ff69b4;
+    font-size: 1.1rem;
+    margin-bottom: 10px;
+}
+
+.valentine-footer .github-link {
+    color: #d63384;
+}
+
+.valentine-footer .github-link a {
+    color: #ff1493;
     text-decoration: none;
+    transition: color 0.3s ease;
 }
 
-footer a:hover {
+.valentine-footer .github-link a:hover {
+    color: #ff69b4;
     text-decoration: underline;
 }
 
 /* Адаптивность */
 @media (max-width: 768px) {
-    .time-value {
-        font-size: 2.5rem;
-        min-width: 80px;
-        padding: 10px 15px;
-    }
-    
-    .time-label {
-        font-size: 1rem;
-    }
-    
-    .time-separator {
-        font-size: 2rem;
+    .container {
+        padding: 20px;
     }
     
     header h1 {
@@ -263,33 +506,38 @@ footer a:hover {
         font-size: 1.5rem;
     }
     
-    .couple-section {
-        flex-direction: column;
+    .time-value {
+        font-size: 2.5rem;
+        min-width: 80px;
+        padding: 10px 15px;
     }
     
-    .heart-connector {
-        margin: 20px 0;
-        transform: rotate(90deg);
+    .love-title {
+        font-size: 1.8rem;
     }
-}
-
-@media (max-width: 480px) {
-    .container {
+    
+    .love-text {
+        font-size: 1.1rem;
+    }
+    
+    .names-title {
+        font-size: 1.5rem;
+    }
+    
+    .names-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 10px;
+    }
+    
+    .name-card {
         padding: 15px;
     }
     
-    .time-block {
-        margin: 5px;
-        min-width: 70px;
+    .name-card .flag {
+        font-size: 1.5rem;
     }
     
-    .time-value {
-        font-size: 2rem;
-        min-width: 70px;
-        padding: 8px 12px;
-    }
-    
-    .countdown {
-        margin-bottom: 10px;
+    .name-card .name {
+        font-size: 0.95rem;
     }
 }

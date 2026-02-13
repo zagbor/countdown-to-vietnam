@@ -1,11 +1,19 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Устанавливаем дату встречи - 28 февраля текущего года
-    const lastYear = new Date().getFullYear()-1;
-    const currentYear = new Date().getFullYear();
+    // Функция для получения текущего времени в часовом поясе Вьетнама (UTC+7)
+    function getVietnamTime() {
+        const now = new Date();
+        const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+        return new Date(utc + (7 * 3600000)); // UTC+7
+    }
+    
+    // Устанавливаем дату встречи - 28 февраля текущего года (в часовом поясе Вьетнама)
+    const vietnamTime = getVietnamTime();
+    const lastYear = vietnamTime.getFullYear() - 1;
+    const currentYear = vietnamTime.getFullYear();
     const targetDate = new Date(currentYear, 1, 28); // 1 = февраль (месяцы 0-11)
     
-    // Если 28 февраля уже прошло в этом году, устанавливаем на следующий год
-    if (targetDate < new Date()) {
+    // Если 28 февраля уже прошло в этом году (по времени Вьетнама), устанавливаем на следующий год
+    if (targetDate < vietnamTime) {
         targetDate.setFullYear(currentYear + 1);
     }
     
@@ -17,12 +25,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const progressFill = document.getElementById('progressFill');
     const progressPercent = document.getElementById('progressPercent');
     
-    // Дата начала отсчета (предположим, отсчет начался 1 января текущего года)
-    const startDate = new Date(lastYear, 11, 22); // 0 = январь
+    // Дата начала отсчета (22 декабря прошлого года, в часовом поясе Вьетнама)
+    const startDate = new Date(lastYear, 11, 22); // 11 = декабрь
     
     // Функция для обновления отсчета
     function updateCountdown() {
-        const now = new Date();
+        const now = getVietnamTime();
         const timeRemaining = targetDate - now;
         
         // Если время истекло
