@@ -509,14 +509,44 @@ header .joke-text {
         font-size: 2rem;
     }
     
+    .countdown-container {
+        padding: 20px 15px;
+    }
+    
     .countdown-title h2 {
         font-size: 1.5rem;
+        margin-bottom: 20px;
+    }
+    
+    .countdown {
+        gap: 5px;
+        margin-bottom: 15px;
+    }
+    
+    .time-block {
+        margin: 5px;
+        min-width: 70px;
     }
     
     .time-value {
-        font-size: 2.5rem;
-        min-width: 80px;
-        padding: 10px 15px;
+        font-size: 2.2rem;
+        min-width: 70px;
+        padding: 12px 10px;
+        border-radius: 12px;
+    }
+    
+    .time-label {
+        font-size: 0.9rem;
+        letter-spacing: 0.5px;
+    }
+    
+    .time-separator {
+        font-size: 2rem;
+        margin: 0 2px;
+    }
+    
+    .target-date {
+        font-size: 1.1rem;
     }
     
     .love-title {
@@ -546,5 +576,142 @@ header .joke-text {
     
     .name-card .name {
         font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 15px;
+    }
+    
+    header h1 {
+        font-size: 1.6rem;
+    }
+    
+    header .subtitle {
+        font-size: 1.1rem;
+    }
+    
+    header .joke-text {
+        font-size: 0.65rem;
+    }
+    
+    .countdown-container {
+        padding: 15px 10px;
+        border-radius: 15px;
+    }
+    
+    .countdown-title h2 {
+        font-size: 1.2rem;
+        margin-bottom: 15px;
+    }
+    
+    .countdown {
+        gap: 3px;
+        justify-content: center;
+    }
+    
+    .time-block {
+        margin: 3px;
+        min-width: 60px;
+    }
+    
+    .time-value {
+        font-size: 1.8rem;
+        min-width: 60px;
+        padding: 10px 8px;
+        border-radius: 10px;
+        border-width: 1px;
+    }
+    
+    .time-label {
+        font-size: 0.75rem;
+        letter-spacing: 0;
+    }
+    
+    .time-separator {
+        font-size: 1.5rem;
+        margin: 0 1px;
+        align-self: flex-start;
+        margin-top: 15px;
+    }
+    
+    .target-date {
+        font-size: 1rem;
+    }
+    
+    .love-message {
+        padding: 25px 20px;
+    }
+    
+    .love-title {
+        font-size: 1.4rem;
+        margin-bottom: 15px;
+    }
+    
+    .love-text {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+    
+    .names-section {
+        padding: 25px 20px;
+    }
+    
+    .names-title {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+    }
+    
+    .names-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+    
+    .name-card {
+        padding: 12px 8px;
+        border-radius: 12px;
+    }
+    
+    .name-card .flag {
+        font-size: 1.3rem;
+        margin-bottom: 5px;
+    }
+    
+    .name-card .name {
+        font-size: 0.85rem;
+    }
+}
+
+@media (max-width: 360px) {
+    .time-value {
+        font-size: 1.5rem;
+        min-width: 50px;
+        padding: 8px 6px;
+    }
+    
+    .time-label {
+        font-size: 0.65rem;
+    }
+    
+    .time-separator {
+        font-size: 1.2rem;
+    }
+    
+    .names-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 6px;
+    }
+    
+    .name-card {
+        padding: 10px 6px;
+    }
+    
+    .name-card .flag {
+        font-size: 1.1rem;
+    }
+    
+    .name-card .name {
+        font-size: 0.75rem;
     }
 }
