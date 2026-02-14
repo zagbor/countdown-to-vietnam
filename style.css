@@ -6,19 +6,19 @@
 
 body {
     font-family: 'Roboto', sans-serif;
-    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+    background: linear-gradient(180deg, #1a1a1a 0%, #0d0d0d 100%);
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px;
-    color: #333;
+    color: #e0e0e0;
     position: relative;
     overflow-x: hidden;
 }
 
-/* Плавающие сердечки на фоне */
-.hearts-bg {
+/* Эффект дождя на фоне */
+.rain-bg {
     position: fixed;
     top: 0;
     left: 0;
@@ -26,115 +26,101 @@ body {
     height: 100%;
     pointer-events: none;
     z-index: 0;
-    overflow: hidden;
+    background: 
+        repeating-linear-gradient(
+            180deg,
+            transparent,
+            transparent 2px,
+            rgba(255, 255, 255, 0.03) 2px,
+            rgba(255, 255, 255, 0.03) 4px
+        );
+    animation: rain 20s linear infinite;
 }
 
-.floating-heart {
-    position: absolute;
-    font-size: 2rem;
-    opacity: 0.6;
-    animation: floatUp 15s linear infinite;
-}
-
-@keyframes floatUp {
-    0% {
-        transform: translateY(100vh) rotate(0deg);
-        opacity: 0;
-    }
-    10% {
-        opacity: 0.6;
-    }
-    90% {
-        opacity: 0.6;
-    }
-    100% {
-        transform: translateY(-100px) rotate(360deg);
-        opacity: 0;
-    }
+@keyframes rain {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 1000px; }
 }
 
 .container {
     max-width: 1200px;
     width: 100%;
-    background-color: rgba(255, 255, 255, 0.95);
-    border-radius: 25px;
-    box-shadow: 0 20px 60px rgba(255, 105, 180, 0.3);
+    background-color: rgba(20, 20, 20, 0.95);
+    border-radius: 4px;
+    box-shadow: 0 0 60px rgba(0, 0, 0, 0.8), inset 0 0 100px rgba(0, 0, 0, 0.5);
     overflow: hidden;
     padding: 40px;
     position: relative;
     z-index: 1;
+    border: 1px solid #333;
 }
 
 header {
     text-align: center;
     margin-bottom: 40px;
     padding-bottom: 20px;
-    border-bottom: 3px solid #ff69b4;
+    border-bottom: 1px solid #444;
 }
 
-.valentine-decoration {
-    font-size: 1.5rem;
-    color: #ff1493;
-    margin: 10px 0;
-    animation: pulse 1.5s ease-in-out infinite;
+.noir-decoration {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin: 15px 0;
 }
 
-.valentine-decoration i {
-    margin: 0 10px;
-}
-
-@keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.1); }
+.noir-decoration .line {
+    width: 60px;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #666, transparent);
 }
 
 header h1 {
-    color: #ff1493;
+    color: #f0f0f0;
     font-size: 2.8rem;
     margin-bottom: 15px;
-    font-family: 'Dancing Script', cursive;
-    text-shadow: 2px 2px 4px rgba(255, 20, 147, 0.3);
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 header .subtitle {
-    color: #ff69b4;
+    color: #888;
     font-size: 1.4rem;
-    font-weight: 500;
+    font-weight: 300;
+    letter-spacing: 1px;
 }
 
-header .joke-text {
-    font-size: 0.75rem;
-    color: rgba(255, 20, 147, 0.7);
+header .mood-text {
+    font-size: 0.9rem;
+    color: #666;
     margin-top: 15px;
     font-style: italic;
+    font-weight: 300;
 }
 
 .countdown-container {
-    background: linear-gradient(135deg, #ff6b95 0%, #ff8e53 50%, #ff6b95 100%);
-    border-radius: 20px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #252525 100%);
+    border-radius: 4px;
     padding: 35px;
-    color: white;
+    color: #e0e0e0;
     text-align: center;
     margin-bottom: 40px;
-    box-shadow: 0 15px 30px rgba(255, 107, 149, 0.4);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.05);
     position: relative;
     overflow: hidden;
+    border: 1px solid #333;
 }
 
 .countdown-container::before {
     content: '';
     position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-    animation: shimmer 3s linear infinite;
-}
-
-@keyframes shimmer {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
 }
 
 .countdown-title h2 {
@@ -142,6 +128,10 @@ header .joke-text {
     margin-bottom: 25px;
     position: relative;
     z-index: 1;
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    letter-spacing: 2px;
+    color: #ccc;
 }
 
 .countdown {
@@ -162,38 +152,45 @@ header .joke-text {
 
 .time-value {
     font-size: 3.5rem;
-    font-weight: 700;
-    background: linear-gradient(135deg, rgba(255,255,255,0.3), rgba(255,255,255,0.1));
-    border-radius: 15px;
+    font-weight: 300;
+    background: linear-gradient(135deg, #2a2a2a, #1a1a1a);
+    border-radius: 4px;
     padding: 15px 20px;
     margin-bottom: 10px;
     min-width: 110px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-    border: 2px solid rgba(255, 255, 255, 0.3);
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    border: 1px solid #444;
     position: relative;
     z-index: 1;
+    font-family: 'Playfair Display', serif;
+    color: #f0f0f0;
 }
 
 .time-label {
-    font-size: 1.2rem;
+    font-size: 1rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
+    color: #666;
+    font-weight: 300;
 }
 
 .time-separator {
     font-size: 3rem;
-    font-weight: bold;
+    font-weight: 300;
     margin: 0 5px;
-    color: rgba(255, 255, 255, 0.8);
+    color: #555;
 }
 
 .target-date {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
     margin-top: 15px;
+    color: #888;
+    font-weight: 300;
 }
 
 .target-date i {
     margin-right: 10px;
+    color: #666;
 }
 
 .info-section {
@@ -206,23 +203,27 @@ header .joke-text {
 .info-card {
     flex: 1;
     min-width: 300px;
-    background: linear-gradient(135deg, #fff0f5 0%, #ffe4e1 100%);
-    border-radius: 20px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #222 100%);
+    border-radius: 4px;
     padding: 30px;
-    box-shadow: 0 10px 25px rgba(255, 105, 180, 0.2);
-    border: 2px solid #ffb6c1;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid #333;
 }
 
-.valentine-card h3 {
-    color: #ff1493;
+.noir-card h3 {
+    color: #ccc;
     margin-bottom: 15px;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    letter-spacing: 1px;
 }
 
-.valentine-card p {
+.noir-card p {
     line-height: 1.8;
-    color: #d63384;
-    font-size: 1.1rem;
+    color: #888;
+    font-size: 1.05rem;
+    font-weight: 300;
 }
 
 .couple-section {
@@ -231,14 +232,14 @@ header .joke-text {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    background: linear-gradient(135deg, #fff0f5 0%, #ffe4e1 100%);
-    border-radius: 20px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #222 100%);
+    border-radius: 4px;
     padding: 30px;
-    box-shadow: 0 10px 25px rgba(255, 105, 180, 0.2);
-    border: 2px solid #ffb6c1;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid #333;
 }
 
-.valentine-couple .person {
+.noir-couple .person {
     text-align: center;
     padding: 20px;
 }
@@ -246,104 +247,115 @@ header .joke-text {
 .male-avatar {
     width: 90px;
     height: 90px;
-    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-    color: white;
+    background: linear-gradient(135deg, #3a3a3a 0%, #2a2a2a 100%);
+    color: #888;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 2.5rem;
     margin: 0 auto 15px;
-    box-shadow: 0 5px 15px rgba(79, 172, 254, 0.4);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    border: 1px solid #444;
 }
 
 .female-avatar {
     width: 90px;
     height: 90px;
-    background: linear-gradient(135deg, #ff6b95 0%, #ff8e53 100%);
-    color: white;
+    background: linear-gradient(135deg, #4a4a4a 0%, #3a3a3a 100%);
+    color: #aaa;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 2.5rem;
     margin: 0 auto 15px;
-    box-shadow: 0 5px 15px rgba(255, 107, 149, 0.4);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+    border: 1px solid #555;
 }
 
-.valentine-couple .person h3 {
-    color: #ff1493;
+.noir-couple .person h3 {
+    color: #ccc;
     margin-bottom: 10px;
-    font-size: 1.4rem;
+    font-size: 1.3rem;
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
 }
 
-.valentine-couple .person p {
-    color: #d63384;
-    font-size: 1.1rem;
+.noir-couple .person p {
+    color: #666;
+    font-size: 1rem;
+    font-weight: 300;
+    font-style: italic;
 }
 
-.valentine-couple .heart-connector {
+.noir-couple .connector {
     font-size: 2.5rem;
-    color: #ff1493;
+    color: #555;
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 8px;
 }
 
-.valentine-couple .heart-connector i {
-    animation: heartbeat 1.5s ease-in-out infinite;
+.noir-couple .connector .dot {
+    width: 8px;
+    height: 8px;
+    background: #555;
+    border-radius: 50%;
+    animation: fadeDot 2s ease-in-out infinite;
 }
 
-.valentine-couple .heart-connector i:nth-child(2) {
-    animation-delay: 0.2s;
+.noir-couple .connector .dot:nth-child(2) {
+    animation-delay: 0.3s;
 }
 
-.valentine-couple .heart-connector i:nth-child(3) {
-    animation-delay: 0.4s;
+.noir-couple .connector .dot:nth-child(3) {
+    animation-delay: 0.6s;
 }
 
-@keyframes heartbeat {
-    0%, 100% { transform: scale(1); }
-    25% { transform: scale(1.2); }
-    50% { transform: scale(1); }
-    75% { transform: scale(1.15); }
+@keyframes fadeDot {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 1; }
 }
 
 .progress-container {
-    background: linear-gradient(135deg, #fff0f5 0%, #ffe4e1 100%);
-    border-radius: 20px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #222 100%);
+    border-radius: 4px;
     padding: 30px;
     margin-bottom: 30px;
-    box-shadow: 0 10px 25px rgba(255, 105, 180, 0.2);
-    border: 2px solid #ffb6c1;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 1px solid #333;
 }
 
-.valentine-progress h3 {
-    color: #ff1493;
+.noir-progress h3 {
+    color: #ccc;
     margin-bottom: 20px;
-    font-size: 1.5rem;
+    font-size: 1.4rem;
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    letter-spacing: 1px;
 }
 
 .progress-bar {
     height: 35px;
-    background: linear-gradient(90deg, #ffe4e1, #fff0f5);
-    border-radius: 20px;
+    background: linear-gradient(90deg, #1a1a1a, #252525);
+    border-radius: 4px;
     overflow: hidden;
     margin-bottom: 15px;
-    border: 2px solid #ffb6c1;
+    border: 1px solid #333;
 }
 
 .progress-fill {
     height: 100%;
-    background: linear-gradient(90deg, #ff6b95, #ff8e53, #ff6b95);
+    background: linear-gradient(90deg, #4a4a4a, #5a5a5a, #4a4a4a);
     background-size: 200% 100%;
-    animation: progressGradient 3s linear infinite;
+    animation: progressGradient 4s linear infinite;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: bold;
-    color: white;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    font-weight: 300;
+    color: #e0e0e0;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
 }
 
 @keyframes progressGradient {
@@ -353,48 +365,47 @@ header .joke-text {
 }
 
 .progress-text {
-    color: #d63384;
-    font-size: 1.1rem;
+    color: #888;
+    font-size: 1rem;
+    font-weight: 300;
 }
 
 .progress-text span {
-    font-weight: bold;
-    color: #ff1493;
+    font-weight: 400;
+    color: #aaa;
 }
 
 /* Сообщение о любви */
 .love-message {
-    background: linear-gradient(135deg, #ff6b95 0%, #ff8e53 100%);
-    border-radius: 25px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #252525 100%);
+    border-radius: 4px;
     padding: 40px;
     margin-bottom: 40px;
     text-align: center;
-    box-shadow: 0 15px 40px rgba(255, 107, 149, 0.4);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.6);
     position: relative;
     overflow: hidden;
+    border: 1px solid #333;
 }
 
 .love-message::before {
-    content: '💖';
+    content: '"';
     position: absolute;
     top: 10px;
     left: 20px;
-    font-size: 2rem;
-    animation: floatHeart 3s ease-in-out infinite;
+    font-size: 4rem;
+    color: rgba(255, 255, 255, 0.05);
+    font-family: 'Playfair Display', serif;
 }
 
 .love-message::after {
-    content: '💖';
+    content: '"';
     position: absolute;
-    bottom: 10px;
+    bottom: -20px;
     right: 20px;
-    font-size: 2rem;
-    animation: floatHeart 3s ease-in-out infinite 1.5s;
-}
-
-@keyframes floatHeart {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+    font-size: 4rem;
+    color: rgba(255, 255, 255, 0.05);
+    font-family: 'Playfair Display', serif;
 }
 
 .love-message-content {
@@ -403,37 +414,40 @@ header .joke-text {
 }
 
 .love-title {
-    color: white;
-    font-family: 'Dancing Script', cursive;
-    font-size: 2.5rem;
+    color: #ccc;
+    font-family: 'Playfair Display', serif;
+    font-size: 2.2rem;
     margin-bottom: 20px;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    font-weight: 400;
+    letter-spacing: 2px;
 }
 
 .love-text {
-    color: white;
-    font-size: 1.4rem;
+    color: #888;
+    font-size: 1.3rem;
     line-height: 1.8;
     font-style: italic;
-    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+    font-weight: 300;
 }
 
 /* Секция с именами */
 .names-section {
-    background: linear-gradient(135deg, #fff0f5 0%, #ffe4e1 100%);
-    border-radius: 25px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #222 100%);
+    border-radius: 4px;
     padding: 40px;
     margin-bottom: 30px;
-    box-shadow: 0 15px 40px rgba(255, 105, 180, 0.2);
-    border: 2px solid #ffb6c1;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+    border: 1px solid #333;
 }
 
 .names-title {
-    color: #ff1493;
-    font-family: 'Dancing Script', cursive;
-    font-size: 2rem;
+    color: #ccc;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
     text-align: center;
     margin-bottom: 30px;
+    font-weight: 400;
+    letter-spacing: 2px;
 }
 
 .names-grid {
@@ -443,59 +457,66 @@ header .joke-text {
 }
 
 .name-card {
-    background: linear-gradient(135deg, #ffffff 0%, #fff5f7 100%);
-    border-radius: 15px;
+    background: linear-gradient(135deg, #252525 0%, #1a1a1a 100%);
+    border-radius: 4px;
     padding: 20px;
     text-align: center;
-    box-shadow: 0 5px 15px rgba(255, 105, 180, 0.15);
-    border: 2px solid #ffb6c1;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    border: 1px solid #333;
     transition: all 0.3s ease;
     cursor: default;
 }
 
 .name-card:hover {
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 10px 25px rgba(255, 105, 180, 0.3);
-    border-color: #ff69b4;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+    border-color: #555;
 }
 
 .name-card .flag {
     font-size: 2rem;
     display: block;
     margin-bottom: 10px;
+    filter: grayscale(100%) brightness(0.7);
+    transition: filter 0.3s ease;
+}
+
+.name-card:hover .flag {
+    filter: grayscale(0%) brightness(1);
 }
 
 .name-card .name {
-    color: #ff1493;
-    font-size: 1.1rem;
-    font-weight: 500;
+    color: #aaa;
+    font-size: 1.05rem;
+    font-weight: 300;
 }
 
 /* Футер */
-.valentine-footer {
+.noir-footer {
     text-align: center;
     padding-top: 20px;
-    border-top: 3px solid #ff69b4;
+    border-top: 1px solid #333;
 }
 
-.valentine-footer p {
-    color: #ff69b4;
-    font-size: 1.1rem;
+.noir-footer p {
+    color: #666;
+    font-size: 1rem;
     margin-bottom: 10px;
+    font-weight: 300;
 }
 
-.valentine-footer .github-link {
-    color: #d63384;
+.noir-footer .github-link {
+    color: #555;
 }
 
-.valentine-footer .github-link a {
-    color: #ff1493;
+.noir-footer .github-link a {
+    color: #777;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
-.valentine-footer .github-link a:hover {
-    color: #ff69b4;
+.noir-footer .github-link a:hover {
+    color: #999;
     text-decoration: underline;
 }
 
@@ -532,12 +553,12 @@ header .joke-text {
         font-size: 2.2rem;
         min-width: 70px;
         padding: 12px 10px;
-        border-radius: 12px;
+        border-radius: 4px;
     }
     
     .time-label {
-        font-size: 0.9rem;
-        letter-spacing: 0.5px;
+        font-size: 0.85rem;
+        letter-spacing: 1px;
     }
     
     .time-separator {
@@ -550,7 +571,7 @@ header .joke-text {
     }
     
     .love-title {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
     }
     
     .love-text {
@@ -558,7 +579,7 @@ header .joke-text {
     }
     
     .names-title {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
     }
     
     .names-grid {
@@ -592,13 +613,13 @@ header .joke-text {
         font-size: 1.1rem;
     }
     
-    header .joke-text {
-        font-size: 0.65rem;
+    header .mood-text {
+        font-size: 0.8rem;
     }
     
     .countdown-container {
         padding: 15px 10px;
-        border-radius: 15px;
+        border-radius: 4px;
     }
     
     .countdown-title h2 {
@@ -620,13 +641,12 @@ header .joke-text {
         font-size: 1.8rem;
         min-width: 60px;
         padding: 10px 8px;
-        border-radius: 10px;
-        border-width: 1px;
+        border-radius: 4px;
     }
     
     .time-label {
-        font-size: 0.75rem;
-        letter-spacing: 0;
+        font-size: 0.7rem;
+        letter-spacing: 0.5px;
     }
     
     .time-separator {
@@ -645,7 +665,7 @@ header .joke-text {
     }
     
     .love-title {
-        font-size: 1.4rem;
+        font-size: 1.3rem;
         margin-bottom: 15px;
     }
     
@@ -659,7 +679,7 @@ header .joke-text {
     }
     
     .names-title {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
         margin-bottom: 20px;
     }
     
@@ -670,7 +690,7 @@ header .joke-text {
     
     .name-card {
         padding: 12px 8px;
-        border-radius: 12px;
+        border-radius: 4px;
     }
     
     .name-card .flag {
@@ -691,7 +711,7 @@ header .joke-text {
     }
     
     .time-label {
-        font-size: 0.65rem;
+        font-size: 0.6rem;
     }
     
     .time-separator {
