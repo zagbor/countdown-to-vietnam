@@ -150,8 +150,16 @@ header .mood-text {
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 15px;
     margin-bottom: 25px;
+}
+
+.countdown-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
 }
 
 .time-block {
@@ -349,29 +357,62 @@ header .mood-text {
     }
     
     .countdown {
-        gap: 8px;
+        gap: 12px;
     }
     
     .time-value {
         font-size: 2.2rem;
-        min-width: 70px;
-        padding: 12px 14px;
+        min-width: 65px;
+        padding: 12px 12px;
     }
     
     .time-block {
-        margin: 0 5px;
-        min-width: 65px;
+        margin: 0 4px;
+        min-width: 60px;
     }
     
     .time-label {
-        font-size: 0.75rem;
+        font-size: 0.7rem;
+        letter-spacing: 1px;
     }
     
     .time-separator {
         font-size: 1.8rem;
+        margin: 0 4px;
     }
     
     .direction-text {
         font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 380px) {
+    .countdown {
+        gap: 10px;
+    }
+    
+    .time-value {
+        font-size: 2rem;
+        min-width: 55px;
+        padding: 10px 10px;
+    }
+    
+    .time-block {
+        margin: 0 3px;
+        min-width: 55px;
+    }
+    
+    .time-label {
+        font-size: 0.65rem;
+        letter-spacing: 1px;
+    }
+    
+    .time-separator {
+        font-size: 1.5rem;
+        margin: 0 3px;
+    }
+    
+    .direction-text {
+        font-size: 1.1rem;
     }
 }
