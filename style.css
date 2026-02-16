@@ -275,27 +275,32 @@ body {
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 768px) {
     .story-overlay {
-        gap: 5rem;
+        gap: 3rem;
+        /* Reduced gap */
         padding: 1rem;
+        padding-top: 5rem;
+        /* Add space at top */
     }
 
     .story-block {
         justify-content: center !important;
-        /* Force center on mobile */
         margin-bottom: 2rem;
     }
 
     .block-content {
-        padding: 1.5rem;
+        padding: 1.2rem;
         max-width: 100%;
+        background: rgba(253, 245, 230, 0.95);
+        /* More opaque for readability */
     }
 
     .block-content h2 {
-        font-size: 1.5rem;
+        font-size: 1.4rem;
     }
 
     .block-content p {
-        font-size: 1rem;
+        font-size: 0.95rem;
+        line-height: 1.5;
     }
 
     .map-countdown {
@@ -303,9 +308,13 @@ body {
     }
 
     .timer-unit span {
-        font-size: 1.5rem;
-        min-width: 40px;
-        padding: 0.3rem;
+        font-size: 1.2rem;
+        min-width: 35px;
+        padding: 0.2rem;
+    }
+
+    .timer-unit label {
+        font-size: 0.6rem;
     }
 
     .compass-decoration {
@@ -314,9 +323,18 @@ body {
         right: 15px;
     }
 
-    /* Adjust map scale for mobile to see more context */
+    /* Better map positioning for mobile */
     .map-svg {
-        transform: scale(1.5);
-        transform-origin: center;
+        height: 100vh;
+        width: auto;
+        /* Allow width to overflow */
+        /* Center marker on meeting point or generally center the map */
+        transform: translateX(-25%);
+        /* Shift to show more central area */
+    }
+
+    .landmass {
+        stroke-width: 1;
+        /* Thinner lines on mobile */
     }
 }
