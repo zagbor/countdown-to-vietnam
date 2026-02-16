@@ -1,87 +1,193 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>До встречи во Вьетнаме</title>
+    <title>Карта Судьбы: Боря и Катя 🗺️</title>
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=MedievalSharp&family=Cinzel:wght@400;600;700&family=UnifrakturMaguntia&display=swap"
+        rel="stylesheet">
 </head>
-<body>
-    <div class="rain-bg"></div>
-    
-    <div class="container">
-        <header>
-            <div class="noir-decoration">
-                <span class="line"></span>
-                <span class="line"></span>
-                <span class="line"></span>
-            </div>
-            <h1>До встречи во Вьетнаме</h1>
-            <p class="subtitle">Боря и Катя встретятся 28 февраля</p>
-            <p class="mood-text">А пока есть время, чтобы подумать о чем-нибудь другом</p>
-            <div class="noir-decoration">
-                <span class="line"></span>
-                <span class="line"></span>
-                <span class="line"></span>
-            </div>
-        </header>
 
-        <main>
-            <div class="countdown-container">
-                <div class="countdown-title">
-                    <h2>Время до встречи</h2>
-                </div>
-                
-                <div class="countdown">
-                    <div class="countdown-row">
-                        <div class="time-block">
-                            <div class="time-value" id="days">00</div>
-                            <div class="time-label">Дней</div>
-                        </div>
-                        <div class="time-separator">:</div>
-                        <div class="time-block">
-                            <div class="time-value" id="hours">00</div>
-                            <div class="time-label">Часов</div>
-                        </div>
-                    </div>
-                    <div class="countdown-row">
-                        <div class="time-block">
-                            <div class="time-value" id="minutes">00</div>
-                            <div class="time-label">Минут</div>
-                        </div>
-                        <div class="time-separator">:</div>
-                        <div class="time-block">
-                            <div class="time-value" id="seconds">00</div>
-                            <div class="time-label">Секунд</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="target-date">
-                    <p><i class="far fa-calendar"></i> 28 февраля</p>
-                </div>
-            </div>
-            
-            <div class="direction-container">
-                <div class="direction-title">
-                    <h2>Катя может стать...</h2>
-                </div>
-                <div class="direction-content">
-                    <p class="direction-text" id="kateDirection">Загрузка...</p>
-                </div>
-            </div>
-            
-        </main>
-        
-        <footer class="noir-footer">
-            <p>Создано для Бори и Кати</p>
-        </footer>
+<body>
+    <!-- Map Background Container -->
+    <div class="map-container">
+        <!-- Parchment Texture Overlay -->
+        <div class="parchment-texture"></div>
+
+        <!-- Animated Map SVG -->
+        <svg class="map-svg" viewBox="0 0 1920 1080" preserveAspectRatio="xMidYMid slice">
+            <defs>
+                <filter id="ink-blur">
+                    <feGaussianBlur in="SourceGraphic" stdDeviation="0.5" />
+                </filter>
+                <pattern id="grid-pattern" width="100" height="100" patternUnits="userSpaceOnUse">
+                    <path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(139, 69, 19, 0.1)" stroke-width="1" />
+                </pattern>
+            </defs>
+
+            <!-- Map Grid -->
+            <rect width="100%" height="100%" fill="url(#grid-pattern)" />
+
+            <!-- Map Regions/Landmasses -->
+            <!-- Left Continent (Princess Start) -->
+            <path class="landmass" d="M 100,100 Q 300,50 500,150 T 800,300 T 400,500 T 100,400 Z" fill="#e6d5aa"
+                stroke="#8b4513" stroke-width="2" />
+            <!-- Right Continent (Prince Start) -->
+            <path class="landmass" d="M 1200,800 Q 1400,600 1700,700 T 1800,900 T 1500,1000 T 1200,800 Z" fill="#e6d5aa"
+                stroke="#8b4513" stroke-width="2" />
+            <!-- Central Meeting Island -->
+            <path class="landmass" d="M 800,400 Q 1000,350 1200,450 T 1100,650 T 850,600 Z" fill="#e6d5aa"
+                stroke="#8b4513" stroke-width="2" />
+
+            <!-- Paths of Destiny -->
+            <!-- Princess Path (Top Left -> Center) -->
+            <path id="princess-path" class="map-path" d="M 300,250 Q 500,200 700,350 T 1000,500" fill="none"
+                stroke="#8b0000" stroke-width="4" stroke-dasharray="15,10" filter="url(#ink-blur)" />
+
+            <!-- Prince Path (Bottom Right -> Center) -->
+            <path id="prince-path" class="map-path" d="M 1500,850 Q 1300,900 1200,700 T 1000,500" fill="none"
+                stroke="#00008b" stroke-width="4" stroke-dasharray="15,10" filter="url(#ink-blur)" />
+
+            <!-- Map Icons & Landmarks -->
+            <!-- Princess Start -->
+            <g class="map-icon" transform="translate(250, 180)">
+                <text font-size="60">🏰</text>
+                <text y="70" font-family="Cinzel" font-size="20" fill="#5c4033" text-anchor="middle">Замок
+                    Екатерины</text>
+            </g>
+
+            <!-- Prince Start -->
+            <g class="map-icon" transform="translate(1450, 800)">
+                <text font-size="60">⚔️</text>
+                <text y="70" font-family="Cinzel" font-size="20" fill="#5c4033" text-anchor="middle">Пустоши
+                    Бориса</text>
+            </g>
+
+            <!-- Meeting Point -->
+            <g class="map-icon" transform="translate(970, 440)">
+                <text font-size="80">❤️</text>
+                <text y="90" font-family="Cinzel" font-size="24" fill="#8b0000" text-anchor="middle"
+                    font-weight="bold">Судьбоносная Встреча</text>
+            </g>
+
+            <!-- Decorators: Diverse Terrain -->
+            <g class="map-icon decorator" transform="translate(500, 100)"> <text font-size="40">🏔️</text> </g>
+            <g class="map-icon decorator" transform="translate(150, 450)"> <text font-size="40">🌲</text> </g>
+            <g class="map-icon decorator" transform="translate(1600, 650)"> <text font-size="40">�</text> </g>
+            <g class="map-icon decorator" transform="translate(1300, 950)"> <text font-size="40">🌵</text> </g>
+            <g class="map-icon decorator" transform="translate(1100, 300)"> <text font-size="40">🌊</text> </g>
+            <g class="map-icon decorator" transform="translate(850, 650)"> <text font-size="40">�</text> </g>
+
+            <!-- Villages & Monsters -->
+            <g class="map-icon decorator" transform="translate(600, 300)"> <text font-size="35">🏘️</text> </g>
+            <g class="map-icon decorator" transform="translate(1250, 600)"> <text font-size="35">🏚️</text> </g>
+            <g class="map-icon decorator" transform="translate(400, 400)"> <text font-size="40">🐉</text> </g>
+            <g class="map-icon decorator" transform="translate(1400, 750)"> <text font-size="40">🧞</text> </g>
+            <g class="map-icon decorator" transform="translate(900, 200)"> <text font-size="40">🧜‍♀️</text> </g>
+
+            <!-- Moving Characters -->
+            <g id="princess-marker">
+                <text font-size="50">👸</text>
+                <animateMotion href="#princess-marker" dur="15s" repeatCount="indefinite" rotate="auto" keyPoints="0;1"
+                    keyTimes="0;1" calcMode="linear">
+                    <mpath href="#princess-path" />
+                </animateMotion>
+            </g>
+
+            <g id="prince-marker">
+                <text font-size="50">🤴</text>
+                <animateMotion href="#prince-marker" dur="15s" repeatCount="indefinite" rotate="auto" keyPoints="0;1"
+                    keyTimes="0;1" calcMode="linear">
+                    <mpath href="#prince-path" />
+                </animateMotion>
+            </g>
+        </svg>
     </div>
+
+    <!-- Story Overlay Content -->
+    <main class="story-overlay">
+
+        <!-- Block 1: Ekaterina's Journey -->
+        <section class="story-block ekaterina-block" id="block-1">
+            <div class="block-content scroll-effect">
+                <div class="block-icon">👸</div>
+                <h2>Путь Принцессы</h2>
+                <p>
+                    Прекрасная принцесса Екатерина скиталась по всему свету, посещая далекие королевства.
+                    Она испытывала каждого принца, пытаясь разгадать своё предназначение, но ни один не был достоин её
+                    сердца.
+                    В каждом замке она искала того единственного, кого звёзды предрекли ей, но встречала лишь пустоту.
+                </p>
+                <div class="block-decoration">👑</div>
+            </div>
+        </section>
+
+        <!-- Block 2: Boris's Quest -->
+        <section class="story-block boris-block" id="block-2">
+            <div class="block-content scroll-effect">
+                <div class="block-icon">🤴</div>
+                <h2>Поиск Силы</h2>
+                <p>
+                    В это время отважный Борис провел 15 долгих лет в странствиях, ища легендарное зелье силы.
+                    Он знал, что только преодолев все испытания и обретя истинную мощь духа, он сможет стать достойным
+                    прекрасной принцессы.
+                    Драконы, горы и моря не могли остановить его на пути к цели.
+                </p>
+                <div class="block-decoration">⚔️</div>
+            </div>
+        </section>
+
+        <!-- Block 3: The Meeting (Destiny/Countdown) -->
+        <section class="story-block destiny-block" id="block-3">
+            <div class="block-content scroll-effect final-block">
+                <div class="block-icon">💖</div>
+                <h2>Исполнение Пророчества</h2>
+                <p>
+                    И вот, когда нити судьбы сплетутся воедино. 28 февраля, когда зима встретится с весной, их пути
+                    наконец
+                    пересекутся.
+                    Предназначение исполнится, и два сердца, прошедшие через испытания и годы ожиданий, найдут друг
+                    друга через:
+                </p>
+
+                <!-- Countdown Timer -->
+                <div class="map-countdown">
+                    <div class="timer-unit">
+                        <span id="days">00</span>
+                        <label>Дней</label>
+                    </div>
+                    <div class="timer-sep">:</div>
+                    <div class="timer-unit">
+                        <span id="hours">00</span>
+                        <label>Часов</label>
+                    </div>
+                    <div class="timer-sep">:</div>
+                    <div class="timer-unit">
+                        <span id="minutes">00</span>
+                        <label>Минут</label>
+                    </div>
+                    <div class="timer-sep">:</div>
+                    <div class="timer-unit">
+                        <span id="seconds">00</span>
+                        <label>Секунд</label>
+                    </div>
+                </div>
+
+                <div class="final-date">28 Февраля</div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Floating Compass Decoration -->
+    <div class="compass-decoration">🧭</div>
 
     <script src="script.js"></script>
 </body>
+
 </html>
