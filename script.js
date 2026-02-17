@@ -106,7 +106,7 @@ function initPhysics() {
     engine = Engine.create({
         enableSleeping: true // Optimization: stop calculating physics for resting bodies
     });
-    engine.world.gravity.y = 1;
+    engine.world.gravity.y = 0.75; // Reduced gravity by 25% for slower fall
 
     // Custom Canvas Setup
     const container = document.getElementById('canvas-container');
@@ -340,11 +340,6 @@ function createUIBodies() {
             if (stackCount >= 10 && targetBody.isStatic) {
                 Matter.Body.setStatic(targetBody, false);
             }
-
-            // Trigger if 25 or more bodies are piled up -> Floor collapses
-            if (stackCount >= 25) {
-                breakFloor();
-            }
         };
 
         checkLoad(titleBody);
@@ -461,4 +456,14 @@ function createTaskBubble(type) {
     Matter.Body.setAngularVelocity(body, Math.random() * 0.1 - 0.05);
 
     Composite.add(engine.world, body);
+
+    // Trigger Floor Collapse on first "Absurd" task
+    if (type === 'absurd') {
+        if (!window.hasAbsurdTriggered) {
+            window.hasAbsurdTriggered = true;
+            // Delay break slightly to let it fall a bit? User said "after fall".
+            // Let's give it 2 seconds to be visible falling.
+            setTimeout(breakFloor, 2000);
+        }
+    }
 }
