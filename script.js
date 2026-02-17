@@ -311,13 +311,14 @@ function createUIBodies() {
         const bubbles = allBodies.filter(b => b.label === 'bubble');
 
         const checkLoad = (targetBody) => {
-            if (!targetBody.isStatic) return;
+            // Even if dynamic (fallen), we still check load for floor break
+            if (!targetBody) return;
 
             const width = targetBody.bounds.max.x - targetBody.bounds.min.x;
-            const left = targetBody.position.x - width / 2 - 50; // Widen search area by 50px
+            const left = targetBody.position.x - width / 2 - 50;
             const right = targetBody.position.x + width / 2 + 50;
             const top = targetBody.position.y;
-            const scanHeight = 600; // Look up to 600px above
+            const scanHeight = 800; // Increased scan height for larger stacks
 
             // Count bodies that are:
             // 1. Physically above the target (within width)
@@ -335,9 +336,14 @@ function createUIBodies() {
                 }
             }
 
-            // Trigger if 10 or more bodies are piled up
-            if (stackCount >= 10) {
+            // Trigger if 10 or more bodies are piled up -> Block falls
+            if (stackCount >= 10 && targetBody.isStatic) {
                 Matter.Body.setStatic(targetBody, false);
+            }
+
+            // Trigger if 25 or more bodies are piled up -> Floor collapses
+            if (stackCount >= 25) {
+                breakFloor();
             }
         };
 
@@ -365,16 +371,6 @@ function spawnLoop() {
 
     let nextSpawn = spawnRate + (Math.random() * 200 - 100);
     if (nextSpawn < 40) nextSpawn = 40;
-
-    // Trigger Floor Collapse after sustained max chaos
-    if (spawnRate <= 60) {
-        if (!window.chaosCounter) window.chaosCounter = 0;
-        window.chaosCounter++;
-
-        if (window.chaosCounter > 100) { // Approx 6-8 seconds of max insanity
-            breakFloor();
-        }
-    }
 
     spawnInterval = setTimeout(spawnLoop, nextSpawn);
 }
