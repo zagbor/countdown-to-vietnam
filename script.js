@@ -304,40 +304,45 @@ function createUIBodies() {
 
     Composite.add(engine.world, [titleBody, timerBody]);
 
-    Composite.add(engine.world, [titleBody, timerBody]);
+    // Check for "Weight" (Stacked Bodies)
+    Events.on(engine, 'afterUpdate', () => {
+        const allBodies = Composite.allBodies(engine.world);
+        // Optimization: Filter bubbles once
+        const bubbles = allBodies.filter(b => b.label === 'bubble');
 
-    // Collision Interaction Logic
-    let titleHits = 0;
-    let timerHits = 0;
+        const checkLoad = (targetBody) => {
+            if (!targetBody.isStatic) return;
 
-    Events.on(engine, 'collisionStart', (event) => {
-        const pairs = event.pairs;
+            const width = targetBody.bounds.max.x - targetBody.bounds.min.x;
+            const left = targetBody.position.x - width / 2 - 50; // Widen search area by 50px
+            const right = targetBody.position.x + width / 2 + 50;
+            const top = targetBody.position.y;
+            const scanHeight = 600; // Look up to 600px above
 
-        for (let i = 0; i < pairs.length; i++) {
-            const bodyA = pairs[i].bodyA;
-            const bodyB = pairs[i].bodyB;
-
-            // Check for Title collisions
-            if ((bodyA === titleBody && bodyB.label === 'bubble') || (bodyB === titleBody && bodyA.label === 'bubble')) {
-                if (titleBody.isStatic) {
-                    titleHits++;
-                    // Optional: Visual shake or color flash could go here
-                    if (titleHits >= 10) {
-                        Matter.Body.setStatic(titleBody, false);
-                    }
+            // Count bodies that are:
+            // 1. Physically above the target (within width)
+            // 2. Close enough (scanHeight)
+            // 3. Stationary (speed < 1) - meaning they have landed
+            // 4. Actually bubbles
+            let stackCount = 0;
+            for (let body of bubbles) {
+                if (body.speed < 1 &&
+                    body.position.x > left &&
+                    body.position.x < right &&
+                    body.position.y < top &&
+                    body.position.y > top - scanHeight) {
+                    stackCount++;
                 }
             }
 
-            // Check for Timer collisions
-            if ((bodyA === timerBody && bodyB.label === 'bubble') || (bodyB === timerBody && bodyA.label === 'bubble')) {
-                if (timerBody.isStatic) {
-                    timerHits++;
-                    if (timerHits >= 10) {
-                        Matter.Body.setStatic(timerBody, false);
-                    }
-                }
+            // Trigger if 10 or more bodies are piled up
+            if (stackCount >= 10) {
+                Matter.Body.setStatic(targetBody, false);
             }
-        }
+        };
+
+        checkLoad(titleBody);
+        checkLoad(timerBody);
     });
 }
 
@@ -347,7 +352,7 @@ function spawnLoop() {
     let delay = spawnRate;
     let type = 'serious';
 
-    spawnRate *= 0.98;
+    spawnRate *= 0.975; // Faster decay (approx 25% faster transition)
     if (spawnRate < 60) spawnRate = 60;
 
     if (spawnRate > 1000) { type = 'serious'; }
@@ -361,7 +366,43 @@ function spawnLoop() {
     let nextSpawn = spawnRate + (Math.random() * 200 - 100);
     if (nextSpawn < 40) nextSpawn = 40;
 
+    // Trigger Floor Collapse after sustained max chaos
+    if (spawnRate <= 60) {
+        if (!window.chaosCounter) window.chaosCounter = 0;
+        window.chaosCounter++;
+
+        if (window.chaosCounter > 100) { // Approx 6-8 seconds of max insanity
+            breakFloor();
+        }
+    }
+
     spawnInterval = setTimeout(spawnLoop, nextSpawn);
+}
+
+function breakFloor() {
+    if (currentStage === 'collapsed') return;
+    currentStage = 'collapsed';
+
+    // Find ground and remove it
+    const bodies = Composite.allBodies(engine.world);
+    const ground = bodies.find(b => b.label === 'ground');
+    if (ground) {
+        Composite.remove(engine.world, ground);
+    }
+
+    // Unfreeze Title and Timer if they are still hanging automatically
+    const titleBody = bodies.find(b => b.label === 'title'); // Note: labels might not be unique if not careful, but here they are
+    const timerBody = bodies.find(b => b.label === 'timer');
+
+    // Actually we need references or search by position/type if labels aren't unique. 
+    // In our code we created them with unique labels 'title' and 'timer'? 
+    // Let's check init logic. Yes: label: 'title', label: 'timer'.
+
+    if (titleBody) Matter.Body.setStatic(titleBody, false);
+    if (timerBody) Matter.Body.setStatic(timerBody, false);
+
+    // Wake up everyone
+    bodies.forEach(b => Matter.Sleeping.set(b, false));
 }
 
 // Task Deck System to prevent duplicates
@@ -393,9 +434,9 @@ function createTaskBubble(type) {
     // Scale size for mobile
     const mobileScale = isMobile ? 0.7 : 1;
 
-    if (type === 'serious') { color = '#B2DFDB'; size = 1 * mobileScale; }
-    else if (type === 'semi') { color = '#FFCC80'; size = 1.2 * mobileScale; }
-    else { color = '#F48FB1'; size = 1.4 * mobileScale; }
+    if (type === 'serious') { color = '#B2DFDB'; size = 0.8 * mobileScale; }
+    else if (type === 'semi') { color = '#FFCC80'; size = 1.0 * mobileScale; }
+    else { color = '#F48FB1'; size = 1.2 * mobileScale; }
 
     // Pre-measure text for width
     if (!ctx) return; // safety
