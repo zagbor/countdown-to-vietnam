@@ -7,6 +7,12 @@ const Engine = Matter.Engine,
     Mouse = Matter.Mouse,
     MouseConstraint = Matter.MouseConstraint;
 
+// Collision Categories
+const CAT_DEFAULT = 0x0001;
+const CAT_FALLING = 0x0002;
+const CAT_STAYING = 0x0004;
+
+
 // Task Lists
 const tasks = {
     serious: [
@@ -272,7 +278,8 @@ function createUIBodies() {
         titleRect.height,
         {
             isStatic: true,
-            label: 'title' // Custom renderer will ignore this label
+            label: 'title', // Custom renderer will ignore this label
+            collisionFilter: { category: CAT_FALLING }
         }
     );
 
@@ -283,7 +290,8 @@ function createUIBodies() {
         timerRect.height,
         {
             isStatic: true,
-            label: 'timer'
+            label: 'timer',
+            collisionFilter: { category: CAT_FALLING }
         }
     );
 
@@ -377,8 +385,10 @@ function breakFloor() {
     // Find ground and remove it
     const bodies = Composite.allBodies(engine.world);
     const ground = bodies.find(b => b.label === 'ground');
+
     if (ground) {
-        Composite.remove(engine.world, ground);
+        // Change ground mask so it only holds 'staying' objects
+        ground.collisionFilter.mask = CAT_STAYING | CAT_DEFAULT;
     }
 
     // Unfreeze Title and Timer if they are still hanging automatically
@@ -439,10 +449,13 @@ function createTaskBubble(type) {
     const width = textWidth + (40 * size);
     const height = 44 * size;
 
+    const category = (type === 'serious') ? CAT_FALLING : CAT_STAYING;
+
     const body = Bodies.rectangle(x, y, width, height, {
         chamfer: { radius: height / 2 },
         restitution: 0.5,
-        label: 'bubble'
+        label: 'bubble',
+        collisionFilter: { category: category }
     });
 
     body.customData = {
