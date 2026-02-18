@@ -15,31 +15,28 @@
 </head>
 
 <body>
-    <div id="canvas-container"></div>
-
-    <div class="ui-layer" id="ui-layer">
-        <h1 class="main-title">Осталось всего десять дней до встречи.<br>Наверное, стоит подготовиться...</h1>
-
-        <div class="countdown-container" id="countdown-box">
+    <div class="background-image"></div>
+    <canvas id="energy-canvas"></canvas>
+    <div class="content-wrapper">
+        <h1 class="main-title">Просто жду</h1>
+        <div id="countdown-box">
             <div class="time-unit">
                 <span id="days">00</span>
-                <label>Дней</label>
+                <div class="label">Дней</div>
             </div>
             <div class="time-unit">
                 <span id="hours">00</span>
-                <label>Часов</label>
+                <div class="label">Часов</div>
             </div>
             <div class="time-unit">
                 <span id="minutes">00</span>
-                <label>Минут</label>
+                <div class="label">Минут</div>
             </div>
             <div class="time-unit">
                 <span id="seconds">00</span>
-                <label>Секунд</label>
+                <div class="label">Секунд</div>
             </div>
         </div>
-
-        <button id="start-btn" class="action-btn">Получить список дел 📋</button>
     </div>
 
     <script src="script.js"></script>
