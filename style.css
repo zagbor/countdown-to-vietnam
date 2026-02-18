@@ -70,7 +70,7 @@ body {
 
 .main-title {
     font-family: 'Playfair Display', serif;
-    font-size: 4rem;
+    font-size: 6rem;
     font-weight: 700;
     font-style: italic;
     margin-bottom: 2rem;
@@ -93,7 +93,7 @@ body {
 
 .time-unit span {
     font-family: 'Playfair Display', serif;
-    font-size: 3.5rem;
+    font-size: 5.5rem;
     font-weight: 700;
     line-height: 1;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
