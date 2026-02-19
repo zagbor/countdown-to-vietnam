@@ -3,22 +3,21 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Вьетнам ждёт! 🇻🇳</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Bagel & Baguette</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&family=Pacifico&display=swap"
-        rel="stylesheet">
-    <!-- Matter.js for Physics -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.19.0/matter.min.js"></script>
+    <!-- Load Three.js (Global build for file:// support) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/DragControls.js"></script>
 </head>
 
 <body>
-    <div class="background-image"></div>
-    <canvas id="energy-canvas"></canvas>
-    <div class="content-wrapper">
-        <h1 class="main-title">Просто жду</h1>
+    <!-- 3D Container -->
+    <div id="canvas-container"></div>
+
+    <!-- UI Overlay (Hidden by default) -->
+    <div id="ui-overlay" class="hidden">
+        <h1 class="bingo-text">Бинго!</h1>
         <div id="countdown-box">
             <div class="time-unit">
                 <span id="days">00</span>
@@ -39,6 +38,7 @@
         </div>
     </div>
 
+    <!-- Remove type="module" -->
     <script src="script.js"></script>
 </body>
 
