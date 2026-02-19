@@ -43,7 +43,7 @@ function init() {
     renderer.shadowMap.enabled = true;
     container.appendChild(renderer.domElement);
 
-    // 5. Create Objects
+    // 5. Create Object s
     createBagel();
     createBaguette();
 
