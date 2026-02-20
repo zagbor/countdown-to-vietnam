@@ -4,41 +4,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Bagel & Baguette</title>
+    <title>Усталь</title>
     <link rel="stylesheet" href="style.css">
-    <!-- Load Three.js (Global build for file:// support) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/DragControls.js"></script>
 </head>
 
 <body>
-    <!-- 3D Container -->
-    <div id="canvas-container"></div>
+    <canvas id="scene"></canvas>
 
-    <!-- UI Overlay (Hidden by default) -->
-    <div id="ui-overlay" class="hidden">
-        <h1 class="bingo-text">Бинго!</h1>
+    <div id="ui">
+        <h1 id="title">Усталь</h1>
         <div id="countdown-box">
-            <div class="time-unit">
-                <span id="days">00</span>
-                <div class="label">Дней</div>
+            <div class="time-unit"><span id="days">00</span>
+                <div class="label">дней</div>
             </div>
-            <div class="time-unit">
-                <span id="hours">00</span>
-                <div class="label">Часов</div>
+            <div class="time-unit"><span id="hours">00</span>
+                <div class="label">часов</div>
             </div>
-            <div class="time-unit">
-                <span id="minutes">00</span>
-                <div class="label">Минут</div>
+            <div class="time-unit"><span id="minutes">00</span>
+                <div class="label">минут</div>
             </div>
-            <div class="time-unit">
-                <span id="seconds">00</span>
-                <div class="label">Секунд</div>
+            <div class="time-unit"><span id="seconds">00</span>
+                <div class="label">секунд</div>
             </div>
         </div>
     </div>
 
-    <!-- Remove type="module" -->
     <script src="script.js"></script>
 </body>
 
