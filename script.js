@@ -56,194 +56,203 @@ function drawDwarf(cx, cy, scale) {
     ctx.translate(cx, cy);
     ctx.scale(scale, scale);
 
-    // ── Cloak / Cape (behind body)
-    ctx.fillStyle = '#8b0000';
+    // ── Dark Jacket (leather, slightly open)
+    ctx.fillStyle = '#1c1c1c';
     ctx.beginPath();
-    ctx.moveTo(-55, -60);
-    ctx.bezierCurveTo(-80, -10, -85, 50, -60, 110);
-    ctx.bezierCurveTo(-30, 130, 30, 130, 60, 110);
-    ctx.bezierCurveTo(85, 50, 80, -10, 55, -60);
+    ctx.moveTo(-48, -55);
+    ctx.bezierCurveTo(-62, -10, -65, 50, -50, 100);
+    ctx.bezierCurveTo(-25, 118, 25, 118, 50, 100);
+    ctx.bezierCurveTo(65, 50, 62, -10, 48, -55);
     ctx.closePath();
     ctx.fill();
 
-    // Cloak gold trim
-    ctx.strokeStyle = '#c9a227';
-    ctx.lineWidth = 4;
-    ctx.stroke();
+    // Jacket lapels (open, showing dark tee under)
+    // Left lapel
+    ctx.fillStyle = '#2a2a2a';
+    ctx.beginPath();
+    ctx.moveTo(0, -60); ctx.lineTo(-20, -55); ctx.lineTo(-30, -10); ctx.lineTo(0, 5);
+    ctx.closePath(); ctx.fill();
+    // Right lapel
+    ctx.beginPath();
+    ctx.moveTo(0, -60); ctx.lineTo(20, -55); ctx.lineTo(30, -10); ctx.lineTo(0, 5);
+    ctx.closePath(); ctx.fill();
 
-    // ── Body / Doublet (Lannister crimson)
-    ctx.fillStyle = '#9b1a1a';
+    // Inner dark tee
+    ctx.fillStyle = '#111';
     ctx.beginPath();
-    ctx.ellipse(0, 40, 42, 52, 0, 0, Math.PI * 2);
-    ctx.fill();
+    ctx.moveTo(-18, -55); ctx.lineTo(18, -55); ctx.lineTo(22, 10); ctx.lineTo(-22, 10);
+    ctx.closePath(); ctx.fill();
 
-    // Doublet vertical seam details
-    ctx.strokeStyle = '#c9a227';
-    ctx.lineWidth = 2;
-    ctx.beginPath(); ctx.moveTo(0, -10); ctx.lineTo(0, 90); ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(-20, -5); ctx.lineTo(-20, 85); ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(20, -5); ctx.lineTo(20, 85); ctx.stroke();
+    // Jacket stitch/zip line
+    ctx.strokeStyle = '#333';
+    ctx.lineWidth = 1.5;
+    ctx.setLineDash([4, 3]);
+    ctx.beginPath(); ctx.moveTo(0, -55); ctx.lineTo(0, 95); ctx.stroke();
+    ctx.setLineDash([]);
 
-    // ── Gold Pauldrons (shoulder guards)
-    ctx.fillStyle = '#c9a227';
-    // left
-    ctx.beginPath();
-    ctx.ellipse(-50, -15, 22, 13, -0.4, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.strokeStyle = '#a07a10'; ctx.lineWidth = 2; ctx.stroke();
-    // right
-    ctx.beginPath();
-    ctx.ellipse(50, -15, 22, 13, 0.4, 0, Math.PI * 2);
-    ctx.fill();
-    ctx.stroke();
+    // ── Shoulders (stocky — jacket collar)
+    ctx.fillStyle = '#222';
+    ctx.beginPath(); ctx.ellipse(-50, -42, 20, 10, -0.3, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.ellipse(50, -42, 20, 10, 0.3, 0, Math.PI * 2); ctx.fill();
 
-    // ── Arms (shorter, stocky)
-    ctx.fillStyle = '#9b1a1a';
-    // left arm + hand with goblet
-    ctx.beginPath();
-    ctx.ellipse(-62, 20, 13, 32, -0.5, 0, Math.PI * 2);
-    ctx.fill();
-    // right arm
-    ctx.beginPath();
-    ctx.ellipse(58, 25, 13, 28, 0.4, 0, Math.PI * 2);
-    ctx.fill();
+    // ── Arms (very stocky)
+    ctx.fillStyle = '#1c1c1c';
+    // left arm — slightly raised, crossed/pouty
+    ctx.beginPath(); ctx.ellipse(-60, 10, 14, 38, -0.35, 0, Math.PI * 2); ctx.fill();
+    // right arm — drooped, casual
+    ctx.beginPath(); ctx.ellipse(60, 18, 14, 35, 0.25, 0, Math.PI * 2); ctx.fill();
 
     // ── Hands
-    ctx.fillStyle = '#f0c59e';
-    // left hand
-    ctx.beginPath(); ctx.arc(-68, 48, 11, 0, Math.PI * 2); ctx.fill();
-    // right hand
-    ctx.beginPath(); ctx.arc(64, 50, 11, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = '#d4956a';
+    ctx.beginPath(); ctx.arc(-66, 44, 12, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(66, 50, 12, 0, Math.PI * 2); ctx.fill();
 
-    // ── Goblet of wine (left hand)
-    ctx.fillStyle = '#c9a227';
-    // cup base
-    ctx.beginPath();
-    ctx.roundRect(-80, 44, 22, 22, [0, 0, 4, 4]);
-    ctx.fill();
-    // stem
-    ctx.fillRect(-72, 64, 6, 10);
-    // base plate
-    ctx.fillRect(-78, 72, 18, 4);
-    // wine inside
-    ctx.fillStyle = '#6b0f0f';
-    ctx.beginPath();
-    ctx.ellipse(-69, 47, 8, 4, 0, 0, Math.PI * 2);
-    ctx.fill();
-    // shine
-    ctx.fillStyle = 'rgba(255,255,255,0.3)';
-    ctx.beginPath();
-    ctx.ellipse(-73, 49, 3, 2, -0.5, 0, Math.PI * 2);
-    ctx.fill();
-
-    // ── Neck
-    ctx.fillStyle = '#f0c59e';
-    ctx.beginPath();
-    ctx.roundRect(-10, -92, 20, 20, 4);
-    ctx.fill();
-
-    // ── Head (large, slightly wide — dwarfism proportions)
-    ctx.fillStyle = '#f0c59e';
-    ctx.beginPath();
-    ctx.ellipse(0, -122, 40, 36, 0, 0, Math.PI * 2);
-    ctx.fill();
-
-    // ── Blond hair (tousled, slightly unkempt)
-    ctx.fillStyle = '#d4a017';
-    // back of head / sides
-    ctx.beginPath();
-    ctx.ellipse(0, -128, 44, 30, 0, 0, Math.PI * 2);
-    ctx.fill();
-    // forelock tufts
-    ctx.beginPath();
-    ctx.moveTo(-30, -148);
-    ctx.bezierCurveTo(-35, -165, -20, -170, -15, -155);
-    ctx.bezierCurveTo(-8, -170, 0, -172, 2, -158);
-    ctx.bezierCurveTo(8, -172, 22, -168, 20, -152);
-    ctx.bezierCurveTo(28, -165, 38, -160, 32, -148);
-    ctx.closePath();
-    ctx.fill();
-
-    // ── Face over hair
-    ctx.fillStyle = '#f0c59e';
-    ctx.beginPath();
-    ctx.ellipse(0, -118, 34, 30, 0, 0, Math.PI * 2);
-    ctx.fill();
-
-    // Slight stubble / beard jawline
-    ctx.fillStyle = 'rgba(180, 140, 80, 0.25)';
-    ctx.beginPath();
-    ctx.ellipse(0, -100, 28, 14, 0, 0, Math.PI);
-    ctx.fill();
-
-    // ── Eyes — one slightly narrower (knowing, amused)
-    // Whites
-    ctx.fillStyle = '#fff';
-    ctx.beginPath(); ctx.ellipse(-14, -122, 9, 7, -0.2, 0, Math.PI * 2); ctx.fill();
-    ctx.beginPath(); ctx.ellipse(14, -122, 9, 7, 0.1, 0, Math.PI * 2); ctx.fill();
-    // Irises (green)
-    ctx.fillStyle = '#4a7c4e';
-    ctx.beginPath(); ctx.arc(-14, -121, 5, 0, Math.PI * 2); ctx.fill();
-    ctx.beginPath(); ctx.arc(14, -121, 5, 0, Math.PI * 2); ctx.fill();
-    // Pupils
-    ctx.fillStyle = '#111';
-    ctx.beginPath(); ctx.arc(-14, -121, 2.5, 0, Math.PI * 2); ctx.fill();
-    ctx.beginPath(); ctx.arc(14, -121, 2.5, 0, Math.PI * 2); ctx.fill();
-    // Lids — right eye slightly lower/drooped for wry look
-    ctx.strokeStyle = '#7a5533';
-    ctx.lineWidth = 2;
-    ctx.beginPath(); ctx.arc(-14, -124, 9, Math.PI + 0.4, -0.4); ctx.stroke();
-    ctx.beginPath(); ctx.arc(14, -123, 9, Math.PI + 0.65, -0.2); ctx.stroke(); // more drooped
-
-    // ── Eyebrows (raised on one side — quizzical)
-    ctx.strokeStyle = '#b8860b';
-    ctx.lineWidth = 2.5;
+    // ── Cigarette (right hand — classic grumpy pose)
+    ctx.strokeStyle = '#f5f5dc';
+    ctx.lineWidth = 3;
     ctx.lineCap = 'round';
-    ctx.beginPath(); ctx.moveTo(-24, -132); ctx.quadraticCurveTo(-14, -137, -4, -133); ctx.stroke();
-    ctx.beginPath(); ctx.moveTo(4, -135); ctx.quadraticCurveTo(14, -138, 24, -131); ctx.stroke(); // raised
-
-    // ── Nose (prominent, rounded)
-    ctx.fillStyle = '#d9a47a';
+    ctx.beginPath(); ctx.moveTo(66, 50); ctx.lineTo(86, 42); ctx.stroke();
+    // Ash / ember tip
+    ctx.fillStyle = '#ff6600';
+    ctx.shadowColor = '#ff4400'; ctx.shadowBlur = 8;
+    ctx.beginPath(); ctx.arc(87, 41, 3, 0, Math.PI * 2); ctx.fill();
+    ctx.shadowBlur = 0;
+    // Smoke wisps
+    ctx.strokeStyle = 'rgba(200,200,200,0.3)';
+    ctx.lineWidth = 1.5;
     ctx.beginPath();
-    ctx.ellipse(2, -112, 8, 7, 0.1, 0, Math.PI * 2);
-    ctx.fill();
-    // Nostrils
-    ctx.fillStyle = '#c0845a';
-    ctx.beginPath(); ctx.ellipse(-3, -108, 3, 2, -0.5, 0, Math.PI * 2); ctx.fill();
-    ctx.beginPath(); ctx.ellipse(7, -108, 3, 2, 0.5, 0, Math.PI * 2); ctx.fill();
-
-    // ── Smirk (asymmetric smile — left side higher)
-    ctx.strokeStyle = '#8b4513';
-    ctx.lineWidth = 2.5;
+    ctx.moveTo(87, 38);
+    ctx.bezierCurveTo(82, 28, 92, 18, 87, 8);
+    ctx.stroke();
     ctx.beginPath();
-    ctx.moveTo(-16, -99);
-    ctx.bezierCurveTo(-10, -103, 2, -103, 8, -100);
-    ctx.bezierCurveTo(14, -97, 18, -96, 20, -98);
+    ctx.moveTo(90, 37);
+    ctx.bezierCurveTo(96, 27, 88, 17, 94, 7);
     ctx.stroke();
 
-    // ── Lannister lion pin (chest)
-    ctx.fillStyle = '#c9a227';
+    // ── Jeans (dark blue denim)
+    ctx.fillStyle = '#253650';
+    ctx.beginPath(); ctx.roundRect(-30, 90, 24, 50, [0, 0, 5, 5]); ctx.fill();
+    ctx.beginPath(); ctx.roundRect(6, 90, 24, 50, [0, 0, 5, 5]); ctx.fill();
+    // Denim seam
+    ctx.strokeStyle = '#1a2840';
+    ctx.lineWidth = 1.5;
+    ctx.beginPath(); ctx.moveTo(-18, 90); ctx.lineTo(-18, 138); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(18, 90); ctx.lineTo(18, 138); ctx.stroke();
+
+    // ── Sneakers (white/grey — modern)
+    ctx.fillStyle = '#e8e8e8';
+    ctx.beginPath(); ctx.ellipse(-18, 138, 22, 12, -0.05, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.ellipse(18, 138, 22, 12, 0.05, 0, Math.PI * 2); ctx.fill();
+    // Sole
+    ctx.fillStyle = '#ccc';
+    ctx.beginPath(); ctx.ellipse(-18, 143, 22, 6, -0.05, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.ellipse(18, 143, 22, 6, 0.05, 0, Math.PI * 2); ctx.fill();
+    // Laces
+    ctx.strokeStyle = '#999';
+    ctx.lineWidth = 1.5;
+    for (let i = 0; i < 3; i++) {
+        ctx.beginPath(); ctx.moveTo(-30 + i * 6, 133 + i * 1.5); ctx.lineTo(-6 + i * 2, 134 + i * 1.5); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(6 + i * 6, 133 + i * 1.5); ctx.lineTo(30 + i * 2, 134 + i * 1.5); ctx.stroke();
+    }
+
+    // ── Neck (short, thick)
+    ctx.fillStyle = '#d4956a';
+    ctx.beginPath(); ctx.roundRect(-12, -85, 24, 22, 4); ctx.fill();
+
+    // ── Head (large, round — prominent jawline)
+    ctx.fillStyle = '#d4956a';
     ctx.beginPath();
-    ctx.arc(0, 0, 9, 0, Math.PI * 2);
+    ctx.ellipse(0, -118, 38, 36, 0, 0, Math.PI * 2);
     ctx.fill();
-    ctx.fillStyle = '#8b0000';
-    ctx.font = 'bold 9px serif';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText('♛', 0, 1);
+    // Jaw/chin block — wide square jaw
+    ctx.beginPath();
+    ctx.moveTo(-32, -110); ctx.bezierCurveTo(-36, -88, -24, -80, 0, -78);
+    ctx.bezierCurveTo(24, -80, 36, -88, 32, -110);
+    ctx.closePath(); ctx.fill();
 
-    // ── Legs (short and sturdy — boots and trousers)
-    ctx.fillStyle = '#4a2000';
-    ctx.beginPath(); ctx.roundRect(-28, 85, 22, 38, [0, 0, 4, 4]); ctx.fill();
-    ctx.beginPath(); ctx.roundRect(6, 85, 22, 38, [0, 0, 4, 4]); ctx.fill();
+    // ── Dark short hair (messy, slightly unkempt)
+    ctx.fillStyle = '#2a1a0e';
+    ctx.beginPath();
+    ctx.ellipse(0, -132, 40, 22, 0, 0, Math.PI * 2);
+    ctx.fill();
+    // Hair tufts
+    ctx.beginPath();
+    ctx.moveTo(-38, -128);
+    ctx.bezierCurveTo(-45, -148, -28, -158, -20, -144);
+    ctx.bezierCurveTo(-12, -158, -2, -162, 0, -148);
+    ctx.bezierCurveTo(4, -162, 16, -158, 22, -146);
+    ctx.bezierCurveTo(30, -158, 44, -148, 38, -128);
+    ctx.closePath(); ctx.fill();
+    // Small sideburns
+    ctx.beginPath(); ctx.ellipse(-36, -107, 8, 12, -0.2, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.ellipse(36, -107, 8, 12, 0.2, 0, Math.PI * 2); ctx.fill();
 
-    // Boot shine
-    ctx.fillStyle = '#2a1200';
-    ctx.beginPath(); ctx.ellipse(-17, 122, 18, 10, 0.1, 0, Math.PI * 2); ctx.fill();
-    ctx.beginPath(); ctx.ellipse(17, 122, 18, 10, -0.1, 0, Math.PI * 2); ctx.fill();
-    ctx.fillStyle = 'rgba(255,255,255,0.1)';
-    ctx.beginPath(); ctx.ellipse(-22, 118, 6, 3, -0.5, 0, Math.PI * 2); ctx.fill();
-    ctx.beginPath(); ctx.ellipse(12, 118, 6, 3, -0.5, 0, Math.PI * 2); ctx.fill();
+    // ── Face (skin re-cover over hair)
+    ctx.fillStyle = '#d4956a';
+    ctx.beginPath();
+    ctx.ellipse(0, -115, 31, 28, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    // 5-o'clock shadow
+    ctx.fillStyle = 'rgba(80,50,30,0.22)';
+    ctx.beginPath(); ctx.ellipse(0, -97, 26, 15, 0, 0, Math.PI); ctx.fill();
+    // Stubble dots effect
+    ctx.fillStyle = 'rgba(80,50,30,0.18)';
+    for (let i = 0; i < 18; i++) {
+        const sx = (Math.sin(i * 73.1) * 0.8) * 24;
+        const sy = -100 + Math.cos(i * 47.3) * 12;
+        ctx.beginPath(); ctx.arc(sx, sy, 1.2, 0, Math.PI * 2); ctx.fill();
+    }
+
+    // ── Eyes — scowling, heavy-lidded
+    // Whites
+    ctx.fillStyle = '#fff';
+    ctx.beginPath(); ctx.ellipse(-13, -119, 9, 6, 0.1, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.ellipse(13, -119, 9, 6, -0.1, 0, Math.PI * 2); ctx.fill();
+    // Irises (brown)
+    ctx.fillStyle = '#6b3a1f';
+    ctx.beginPath(); ctx.arc(-13, -119, 4.5, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(13, -119, 4.5, 0, Math.PI * 2); ctx.fill();
+    // Pupils
+    ctx.fillStyle = '#0a0a0a';
+    ctx.beginPath(); ctx.arc(-13, -119, 2.2, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.arc(13, -119, 2.2, 0, Math.PI * 2); ctx.fill();
+    // Heavy upper lids (scowling)
+    ctx.fillStyle = '#b87650';
+    ctx.beginPath(); ctx.ellipse(-13, -122, 10, 4.5, 0.1, 0, Math.PI, true); ctx.fill();
+    ctx.beginPath(); ctx.ellipse(13, -122, 10, 4.5, -0.1, 0, Math.PI, true); ctx.fill();
+
+    // ── Eyebrows (furrowed aggressively together)
+    ctx.strokeStyle = '#2a1a0e';
+    ctx.lineWidth = 3.5;
+    ctx.lineCap = 'round';
+    // Left brow — angled down toward nose
+    ctx.beginPath(); ctx.moveTo(-24, -130); ctx.lineTo(-4, -126); ctx.stroke();
+    // Right brow — angled down toward nose
+    ctx.beginPath(); ctx.moveTo(24, -130); ctx.lineTo(4, -126); ctx.stroke();
+    // Frown crease between brows
+    ctx.strokeStyle = 'rgba(150,80,40,0.4)';
+    ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(-3, -126); ctx.lineTo(0, -120); ctx.lineTo(3, -126); ctx.stroke();
+
+    // ── Nose (bulbous, prominent — distinctive)
+    ctx.fillStyle = '#c07f55';
+    ctx.beginPath(); ctx.ellipse(0, -109, 9, 8, 0, 0, Math.PI * 2); ctx.fill();
+    ctx.fillStyle = '#a86840';
+    ctx.beginPath(); ctx.ellipse(-5, -105, 3.5, 2.5, -0.4, 0, Math.PI * 2); ctx.fill();
+    ctx.beginPath(); ctx.ellipse(5, -105, 3.5, 2.5, 0.4, 0, Math.PI * 2); ctx.fill();
+
+    // ── Mouth — flat grumpy line turning down at corners
+    ctx.strokeStyle = '#8b4513';
+    ctx.lineWidth = 2.5;
+    ctx.lineCap = 'round';
+    ctx.beginPath();
+    ctx.moveTo(-18, -95);
+    ctx.bezierCurveTo(-10, -97, 10, -97, 18, -95); // flat
+    // Corner droop
+    ctx.moveTo(-18, -95); ctx.lineTo(-22, -92); // left corner down
+    ctx.moveTo(18, -95); ctx.lineTo(22, -92); // right corner down
+    ctx.stroke();
 
     ctx.restore();
 }
