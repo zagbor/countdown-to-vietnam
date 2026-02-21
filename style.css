@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400;1,700&family=Montserrat:wght@300;400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@1,400&display=swap');
 
 * {
     margin: 0;
@@ -8,9 +8,7 @@
 
 body {
     overflow: hidden;
-    background: #000;
-    font-family: 'Montserrat', sans-serif;
-    color: #ddd;
+    background: #1a0a2e;
     width: 100vw;
     height: 100vh;
 }
@@ -24,71 +22,44 @@ body {
     display: block;
 }
 
-#ui {
+/* Timer overlay */
+#timer {
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    pointer-events: none;
-    z-index: 10;
-}
-
-#title {
-    font-family: 'Playfair Display', serif;
-    font-style: italic;
-    font-size: clamp(3rem, 8vw, 6rem);
-    font-weight: 400;
-    letter-spacing: 0.15em;
-    color: rgba(220, 215, 205, 0.85);
-    text-shadow:
-        0 0 30px rgba(255, 220, 150, 0.3),
-        0 2px 8px rgba(0, 0, 0, 0.8);
-    margin-bottom: 1.5rem;
-    animation: titleBreath 6s ease-in-out infinite;
-}
-
-@keyframes titleBreath {
-
-    0%,
-    100% {
-        opacity: 0.75;
-    }
-
-    50% {
-        opacity: 1;
-    }
-}
-
-#countdown-box {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     display: flex;
     gap: clamp(1rem, 4vw, 3rem);
+    z-index: 10;
+    transition: opacity 1s ease;
+}
+
+#timer.hidden {
+    opacity: 0;
+    pointer-events: none;
 }
 
 .time-unit {
     display: flex;
     flex-direction: column;
     align-items: center;
+    color: #fff;
 }
 
 .time-unit span {
     font-family: 'Playfair Display', serif;
     font-style: italic;
-    font-size: clamp(2rem, 6vw, 4rem);
-    font-weight: 400;
-    color: rgba(220, 210, 190, 0.8);
-    text-shadow: 0 0 20px rgba(255, 200, 100, 0.3);
+    font-size: clamp(2.5rem, 8vw, 5rem);
     line-height: 1;
+    color: #ffe066;
+    text-shadow: 0 0 20px rgba(255, 220, 80, 0.6);
 }
 
 .label {
     font-size: clamp(0.5rem, 1.5vw, 0.7rem);
     text-transform: uppercase;
     letter-spacing: 3px;
-    color: rgba(180, 170, 160, 0.5);
+    color: rgba(255, 255, 255, 0.4);
     margin-top: 0.3rem;
+    font-family: sans-serif;
 }
