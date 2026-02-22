@@ -4,26 +4,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>🎈</title>
+    <title>28 февраля</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <canvas id="scene"></canvas>
 
+    <!-- Floating quote — driven by JS -->
+    <div id="quote-container">
+        <div id="quote-text"></div>
+    </div>
 
-    <!-- Timer shown after pop -->
-    <div id="timer" class="hidden">
-        <div class="time-unit"><span id="days">00</span>
+    <!-- Timer — always visible -->
+    <div id="timer">
+        <div class="time-unit">
+            <span id="days">00</span>
             <div class="label">дней</div>
         </div>
-        <div class="time-unit"><span id="hours">00</span>
+        <div class="sep">:</div>
+        <div class="time-unit">
+            <span id="hours">00</span>
             <div class="label">часов</div>
         </div>
-        <div class="time-unit"><span id="minutes">00</span>
+        <div class="sep">:</div>
+        <div class="time-unit">
+            <span id="minutes">00</span>
             <div class="label">минут</div>
         </div>
-        <div class="time-unit"><span id="seconds">00</span>
+        <div class="sep">:</div>
+        <div class="time-unit">
+            <span id="seconds">00</span>
             <div class="label">секунд</div>
         </div>
     </div>
