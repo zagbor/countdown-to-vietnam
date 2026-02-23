@@ -182,6 +182,12 @@ function drawTrain(time) {
         ctx.save();
         ctx.translate(vib, vib);
 
+        // Specific rocking for the second carriage (rhythmic pulsing)
+        if (c === 1) {
+            const rock = Math.sin(time * 12) * 4;
+            ctx.translate(0, rock);
+        }
+
         // Coach Body
         ctx.fillStyle = '#222';
         ctx.beginPath();
