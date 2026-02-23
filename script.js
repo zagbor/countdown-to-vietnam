@@ -114,48 +114,52 @@ function drawCoastline(scroll) {
     const coastY = H * 0.75;
     ctx.fillStyle = '#d4a373'; // Sand color
     ctx.beginPath();
-    ctx.moveTo(0, coastY);
-    for (let x = 0; x <= W; x += 50) {
+
+    // Use a buffer to ensure the wave doesn't "pop" at screen edges
+    const buffer = 100;
+    ctx.moveTo(-buffer, H);
+    for (let x = -buffer; x <= W + buffer; x += 50) {
         const dx = (x + scroll) * 0.005;
         const dy = Math.sin(dx) * 20;
         ctx.lineTo(x, coastY + dy);
     }
-    ctx.lineTo(W, H);
-    ctx.lineTo(0, H);
+    ctx.lineTo(W + buffer, H);
     ctx.fill();
 
     // Draw palms with parallax
     const palmScroll = scroll * 0.8;
     palms.forEach(p => {
         let px = (p.x - palmScroll) % (W * 4);
-        if (px < -100) px += W * 4;
+        if (px < -200) px += W * 4; // Larger buffer for palms
         drawPalm(px, coastY - 10, p.scale, time, p.sway);
     });
 }
 
 function drawRails(scroll) {
-    const trainY = isMobile ? H * 0.84 : H * 0.78; // Moved up on mobile
+    const trainY = isMobile ? H * 0.84 : H * 0.78;
     const railY = trainY + 2;
-    const sleeperWidth = 40;
-    const sleeperSpacing = 60;
+    const sleeperWidth = isMobile ? 30 : 40;
+    const sleeperSpacing = isMobile ? 50 : 60;
 
     ctx.save();
 
     // Sleepers (the wooden planks)
     ctx.fillStyle = '#3d2b1f';
+    // Use a larger buffer to ensure no popping
+    const buffer = sleeperSpacing * 2;
     const sleeperScroll = scroll % sleeperSpacing;
-    for (let x = -sleeperSpacing; x <= W + sleeperSpacing; x += sleeperSpacing) {
+    for (let x = -buffer; x <= W + buffer; x += sleeperSpacing) {
         ctx.fillRect(x - sleeperScroll, railY, sleeperWidth, 6);
     }
 
-    // Two parallel rails
-    ctx.strokeStyle = '#555';
+    // Two parallel rails - slightly offset to look like 3D or just more solid
+    ctx.strokeStyle = '#666';
     ctx.lineWidth = 4;
     ctx.beginPath();
     ctx.moveTo(0, railY);
     ctx.lineTo(W, railY);
-    ctx.moveTo(0, railY + 4);
-    ctx.lineTo(W, railY + 4);
+    ctx.moveTo(0, railY + 3);
+    ctx.lineTo(W, railY + 3);
     ctx.stroke();
 
     ctx.restore();
@@ -204,8 +208,9 @@ function drawTrain(time) {
             ctx.fillStyle = 'rgba(255, 255, 200, 0.25)'; // Increased glow
             ctx.fillRect(wx, winY, winW, winH);
 
-            // Heart Window (Only in second carriage, first window)
-            if (c === 1 && i === 0) {
+            // Heart Window (In second carriage, middle window)
+            const middleWin = Math.floor(windowCount / 2);
+            if (c === 1 && i === middleWin) {
                 drawHeart(wx + winW / 2, winY + winH / 2, 8, time);
             }
         }

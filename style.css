@@ -80,22 +80,29 @@ body {
 
 .time-unit span {
     font-family: 'Inter', sans-serif;
-    font-weight: 600;
-    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    font-size: clamp(2.5rem, 6vw, 4.5rem);
+    /* Increased */
     color: #fff;
     line-height: 1;
 }
 
 .label {
-    color: rgba(255, 255, 255, 0.5);
-    letter-spacing: 3px;
-    font-size: 0.65rem;
+    color: rgba(255, 255, 255, 0.85);
+    /* Increased contrast */
+    letter-spacing: 2px;
+    font-size: 0.8rem;
+    /* Increased */
+    font-weight: 600;
+    text-transform: uppercase;
 }
 
 .sep {
-    color: rgba(255, 255, 255, 0.2);
-    font-size: clamp(1.5rem, 4vw, 3rem);
+    color: rgba(255, 255, 255, 0.3);
+    font-size: clamp(2rem, 5vw, 4rem);
     margin: 0;
+    align-self: flex-start;
+    margin-top: 5px;
 }
 
 /* ── Mobile ─────────────────────────────────── */
@@ -107,17 +114,17 @@ body {
     }
 
     .time-unit span {
-        font-size: 1.8rem;
+        font-size: 2.2rem;
     }
 
     .label {
-        font-size: 0.5rem;
-        letter-spacing: 2px;
-        margin-top: 2px;
+        font-size: 0.6rem;
+        letter-spacing: 1.5px;
+        margin-top: 4px;
     }
 
     .sep {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
         margin-bottom: 12px;
     }
 
