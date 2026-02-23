@@ -134,7 +134,7 @@ function drawCoastline(scroll) {
 }
 
 function drawRails(scroll) {
-    const trainY = isMobile ? H * 0.88 : H * 0.78;
+    const trainY = isMobile ? H * 0.84 : H * 0.78; // Moved up on mobile
     const railY = trainY + 2;
     const sleeperWidth = 40;
     const sleeperSpacing = 60;
@@ -162,7 +162,7 @@ function drawRails(scroll) {
 }
 
 function drawTrain(time) {
-    const trainY = isMobile ? H * 0.88 : H * 0.78; // Raised on desktop
+    const trainY = isMobile ? H * 0.84 : H * 0.78; // Moved up on mobile
     const coachCount = isMobile ? 3 : 4;
     const coachW = isMobile ? W * 0.25 : W * 0.18;
     const coachH = isMobile ? 50 : 65;
@@ -201,7 +201,7 @@ function drawTrain(time) {
             const wx = coachX + winPadding + i * (winW + winPadding);
 
             // Window glow
-            ctx.fillStyle = 'rgba(255, 255, 200, 0.15)';
+            ctx.fillStyle = 'rgba(255, 255, 200, 0.25)'; // Increased glow
             ctx.fillRect(wx, winY, winW, winH);
 
             // Heart Window (Only in second carriage, first window)
