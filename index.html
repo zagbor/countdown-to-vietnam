@@ -3,41 +3,39 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>28 февраля</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Скоро</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    <canvas id="scene"></canvas>
+    <div class="bg"></div>
 
-    <!-- Coming Soon Title -->
-    <div id="status-container">
-        <h1 id="status-text">Girl, You'll Be a Woman Soon</h1>
-    </div>
+    <main class="container">
+        <div class="timer-card">
+            <div class="time-unit">
+                <span id="days">00</span>
+                <p>дней</p>
+            </div>
+            <div class="sep">:</div>
+            <div class="time-unit">
+                <span id="hours">00</span>
+                <p>часов</p>
+            </div>
+            <div class="sep">:</div>
+            <div class="time-unit">
+                <span id="minutes">00</span>
+                <p>минут</p>
+            </div>
+            <div class="sep">:</div>
+            <div class="time-unit">
+                <span id="seconds">00</span>
+                <p>секунд</p>
+            </div>
+        </div>
 
-    <!-- Timer — always visible -->
-    <div id="timer">
-        <div class="time-unit">
-            <span id="days">00</span>
-            <div class="label">дней</div>
-        </div>
-        <div class="sep">:</div>
-        <div class="time-unit">
-            <span id="hours">00</span>
-            <div class="label">часов</div>
-        </div>
-        <div class="sep">:</div>
-        <div class="time-unit">
-            <span id="minutes">00</span>
-            <div class="label">минут</div>
-        </div>
-        <div class="sep">:</div>
-        <div class="time-unit">
-            <span id="seconds">00</span>
-            <div class="label">секунд</div>
-        </div>
-    </div>
+        <p class="label-bottom">28.02</p>
+    </main>
 
     <script src="script.js"></script>
 </body>
